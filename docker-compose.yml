@@ -1,0 +1,54 @@
+version: '3'
+
+
+services:
+
+  mariadb:
+    container_name: mariadb
+    image: mariadb:latest
+    volumes:
+        - ./database:/tmp/database
+        - mariadb_data:/var/lib/mysql
+    ports:
+        - "3306:3306"
+    env_file:
+        - environment/mysql.env
+    command: mysqld --init-file="/tmp/database/techevents_users_users.sql"
+    networks:
+        - dbnet
+
+  nodeapp:
+    build: .
+    restart: always
+    expose:
+        - "3000"
+    deploy:
+        replicas: 3
+        restart_policy:
+            max_attempts: 3
+            condition: on-failure
+    depends_on:
+        - mariadb
+    networks:
+        - webnet
+        - dbnet
+
+  nginx:
+    container_name: nginx
+    build: ./nginx/
+    ports:
+        - "8000:80"
+    depends_on:
+        - nodeapp
+        - mariadb
+    networks:
+        - webnet
+
+volumes:
+  mariadb_data:
+
+networks:
+  dbnet:
+    driver: bridge
+  webnet:
+    driver: bridge
