@@ -4,7 +4,6 @@ const mysql = require('mysql2');
 // REUSING PREVIOUS CONNECTIONS FROM THE POOL
 
 const pool = mysql.createConnection({
-    // host: 'localhost',
     host: 'mariadb',
     user: 'root',
     database: 'techevents_users',
