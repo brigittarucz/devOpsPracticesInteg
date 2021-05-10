@@ -3,18 +3,19 @@ var relevanceAscending = 1;
 
 function sortByRelevance() {
     var aEvents = document.querySelector(".main__home-events_container");
+    let newOrder;
 
-    if(relevanceAscending) {
+    if (relevanceAscending) {
         // Ascending
 
-        var newOrder = Array.from(aEvents.children).sort(function(a,b) {
+        newOrder = Array.from(aEvents.children).sort(function (a, b) {
             return getRelevance(b) - getRelevance(a);
         });
         event.target.textContent = 'Relevance: Lowest to Highest';
     } else {
         // Descending
-        
-        var newOrder = Array.from(aEvents.children).sort(function(a,b) {
+
+        newOrder = Array.from(aEvents.children).sort(function (a, b) {
             return getRelevance(a) - getRelevance(b);
         });
         event.target.textContent = 'Relevance: Highest to Lowest';
@@ -36,18 +37,19 @@ var dateAscending = 1;
 function sortByDate() {
 
     var aEvents = document.querySelector(".main__home-events_container");
+    let newOrder;
 
-    if(dateAscending) {
+    if (dateAscending) {
         // Ascending
 
-        var newOrder = Array.from(aEvents.children).sort(function(a,b) {
+        newOrder = Array.from(aEvents.children).sort(function (a, b) {
             return getRelevance(b) - getRelevance(a);
         });
         event.target.textContent = 'Date: Latest to Closest';
     } else {
         // Descending
-        
-        var newOrder = Array.from(aEvents.children).sort(function(a,b) {
+
+        newOrder = Array.from(aEvents.children).sort(function (a, b) {
             return getRelevance(a) - getRelevance(b);
         });
         event.target.textContent = 'Date: Closest to Latest';
@@ -60,6 +62,6 @@ function sortByDate() {
     dateAscending = !dateAscending;
 }
 
-function getRelevance(queryElement) {
-    return queryElement.getAttribute("data-timestamp");
-}
+// function getRelevance(queryElement) {
+//     return queryElement.getAttribute("data-timestamp");
+// }
