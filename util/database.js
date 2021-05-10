@@ -4,11 +4,12 @@ const mysql = require('mysql2');
 // REUSING PREVIOUS CONNECTIONS FROM THE POOL
 
 const pool = mysql.createConnection({
-    host: 'localhost',
+    // host: 'localhost',
+    host: 'mariadb',
     user: 'root',
     database: 'techevents_users',
     password: 'password',
-    port: 3308
+    port: 3306
 });
 
 module.exports = pool.promise();

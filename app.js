@@ -10,7 +10,7 @@ const morgan = require('morgan');
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 
@@ -18,9 +18,9 @@ app.use('/', routes);
 app.use(compression());
 
 // Logging with morgan
-const fs = require('fs'); 
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'accesss.log'), {flags: 'a'})
-app.use(morgan('combined', {stream: accessLogStream}));
+const fs = require('fs');
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'accesss.log'), { flags: 'a' })
+app.use(morgan('combined', { stream: accessLogStream }));
 
 // TEST THE DB
 // db.execute('SELECT * FROM users WHERE email = ?', ['brigitt1a121@yahoo.com']).then(result =>{
@@ -28,6 +28,6 @@ app.use(morgan('combined', {stream: accessLogStream}));
 // }).catch(err => {
 //     console.log(err);
 // });
-console.log("Running on port 5000");
-app.listen(5000);
+console.log("Running on port 3000");
+app.listen(3000);
 
