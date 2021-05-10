@@ -12,8 +12,8 @@ services:
     ports:
         - "3306:3306"
     env_file:
-        - environment/mysql.env
-    command: mysqld --init-file="/tmp/database/install_db.sql"
+        - environment/mariadb.env
+    command: mysqld --init-file="/tmp/database/techevents_users.sql"
     networks:
         - dbnet
 
