@@ -94,7 +94,7 @@ module.exports.addToEventArray = async function addToEventArray(user, req) {
     if (!user.events.length) {
         var aUpdatedEvents = [];
         aUpdatedEvents.push(req.body.eventId);
-        var sUpdatedEvents = JSON.stringify(aUpdatedEvents);
+        let sUpdatedEvents = JSON.stringify(aUpdatedEvents);
         return sUpdatedEvents;
     } else {
 
@@ -111,7 +111,7 @@ module.exports.addToEventArray = async function addToEventArray(user, req) {
 
         if (!eventExists) {
             aUserEvents.push(req.body.eventId);
-            var sUpdatedEvents = JSON.stringify(aUserEvents);
+            let sUpdatedEvents = JSON.stringify(aUserEvents);
             return sUpdatedEvents;
         } else {
             return 0;
