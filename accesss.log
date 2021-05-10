@@ -50,3 +50,6 @@
 ::ffff:127.0.0.1 - - [10/May/2021:11:20:51 +0000] "POST /authenticate HTTP/1.1" 404 152 "-" "node-superagent/3.8.3"
 ::ffff:127.0.0.1 - - [10/May/2021:11:22:48 +0000] "POST /authenticate HTTP/1.1" 404 152 "-" "node-superagent/3.8.3"
 ::ffff:127.0.0.1 - - [10/May/2021:11:26:15 +0000] "POST /authenticate HTTP/1.1" 404 152 "-" "node-superagent/3.8.3"
+::ffff:127.0.0.1 - - [10/May/2021:11:28:42 +0000] "POST /authenticate HTTP/1.1" 404 152 "-" "node-superagent/3.8.3"
+::ffff:127.0.0.1 - - [10/May/2021:11:32:09 +0000] "POST /authenticate HTTP/1.1" 404 152 "-" "node-superagent/3.8.3"
+::ffff:127.0.0.1 - - [10/May/2021:11:33:10 +0000] "POST /authenticate HTTP/1.1" 404 152 "-" "node-superagent/3.8.3"
