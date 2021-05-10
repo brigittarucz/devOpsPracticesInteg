@@ -1,6 +1,6 @@
 const assert = require('assert');
 const { expect } = require('chai');
-const dbMaria = require('../util/database-test');
+const dbMaria = require('../util/database');
 
 describe('Test database connection', () => {
     it('Should get user ID 1c1903d7...', (done) => {

@@ -4,7 +4,7 @@ const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 chai.should();
 
-describe("GET /authenticate", () => {
+describe("Test GET /authenticate", () => {
     it('Should get 200', (done) => {
         chai.request(app)
             .get('/authenticate')
@@ -17,7 +17,7 @@ describe("GET /authenticate", () => {
 })
 
 // https://stackoverflow.com/questions/35697763/post-request-via-chai
-describe("POST /authenticate", () => {
+describe("Test POST /authenticate", () => {
     it('Should send parameters to /authenticate POST', function (done) {
         chai.request(app)
             .post('/authenticate')
