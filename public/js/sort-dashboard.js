@@ -7,14 +7,14 @@ function sortByRelevance() {
     if (relevanceAscending) {
         // Ascending
 
-        var newOrder = Array.from(aEvents.children).sort(function (a, b) {
+        let newOrder = Array.from(aEvents.children).sort(function (a, b) {
             return getRelevance(b) - getRelevance(a);
         });
         event.target.textContent = 'Relevance: Lowest to Highest';
     } else {
         // Descending
 
-        var newOrder = Array.from(aEvents.children).sort(function (a, b) {
+        let newOrder = Array.from(aEvents.children).sort(function (a, b) {
             return getRelevance(a) - getRelevance(b);
         });
         event.target.textContent = 'Relevance: Highest to Lowest';
