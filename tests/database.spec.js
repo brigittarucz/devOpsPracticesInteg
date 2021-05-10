@@ -27,5 +27,5 @@ describe('Test database connection', () => {
 
     // Prevent test from hanging
     // https://stackoverflow.com/questions/51046665/mocha-hangs-after-tests-have-finished
-    after(() => { dbMaria.end() })
+    // after(() => { dbMaria.end() })
 });
