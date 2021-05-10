@@ -9,27 +9,31 @@ describe("GET /authenticate", () => {
         chai.request(app)
             .get('/authenticate')
             .end((err, res) => {
-                console.log(res)
+                // console.log(res)
                 res.should.have.status(200);
                 done();
             })
     })
 })
 
-// describe("GET", () => {
-//     it('should send parameters to : /path POST', function (done) {
-//         chai
-//             .request(host)
+// describe("POST /authenticate", () => {
+//     it('Should send parameters to /authenticate POST', function (done) {
+//         chai.request(app)
 //             .post(path)
-//             // .field('myparam' , 'test')
-//             .set('content-type', 'application/x-www-form-urlencoded')
-//             .send({ myparam: 'test' })
-//             .end(function (error, response, body) {
-//                 if (error) {
-//                     done(error);
-//                 } else {
-//                     done();
-//                 }
-//             });
+//             .field('email', 'password')
+//             // .set('content-type', 'application/x-www-form-urlencoded')
+//             .send({ email: 'brigitta2@yahoo.com', password: 'password' })
+//             // .end(function (error, response, body) {
+//             //     if (error) {
+//             //         done(error);
+//             //     } else {
+//             //         done();
+//             //     }
+//             // });
+//             .end((err, res) => {
+//                 // console.log(res)
+//                 res.should.have.status(200);
+//                 done();
+//             })
 //     });
 // })
