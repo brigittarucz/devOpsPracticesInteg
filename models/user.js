@@ -1,5 +1,5 @@
-const e = require('express');
-const db = require('../util/database'); 
+// const e = require('express');
+const db = require('../util/database');
 
 module.exports = class User {
     constructor(id, email, password, proffesion, experience, interests, events) {
@@ -19,7 +19,7 @@ module.exports = class User {
 
     createUser() {
         return db.execute('INSERT INTO users (id, email, password, proffesion, experience, interests, events) VALUES (?, ?, ?, ?, ?, ?, ?)',
-        [ this.id, this.email, this.password, this.proffesion, this.experience, this.interests, this.events]);
+            [this.id, this.email, this.password, this.proffesion, this.experience, this.interests, this.events]);
     }
 
     static fetchUserById(id) {
@@ -27,8 +27,8 @@ module.exports = class User {
     }
 
     saveUser() {
-        return db.execute('UPDATE users SET email = ?, password = ?, proffesion = ?, experience = ?, interests = ? WHERE users.id = ?', 
-        [this.email, this.password, this.proffesion, this.experience, this.interests, this.id]);
+        return db.execute('UPDATE users SET email = ?, password = ?, proffesion = ?, experience = ?, interests = ? WHERE users.id = ?',
+            [this.email, this.password, this.proffesion, this.experience, this.interests, this.id]);
     }
 
     static updateUserEvents(id, event) {
