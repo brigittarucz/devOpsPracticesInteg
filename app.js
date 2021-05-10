@@ -31,5 +31,3 @@ app.listen(3000);
 // }).catch(err => {
 //     console.log(err);
 // });
-
-module.exports = app;
