@@ -73,4 +73,15 @@ describe("Business logic", function() {
                 })
         })
     })
+    describe("Checks authentication through signup", function() {
+        it('POST /authenticate', function (done) {
+            chai.request(app)
+                .post('/authenticate')
+                .send({ email: 'brigitta2@yahoo.com', password: 'password' })
+                .end(function (error, response, body) {
+                    if (error) { done(error); }
+                    else { done(); }
+                });
+        });
+    })
 })
