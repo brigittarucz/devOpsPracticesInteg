@@ -8,6 +8,7 @@ const { LocalStorage } = require('node-localstorage');
 localStorage = new LocalStorage('./local_storage');
 
 var utilities = require('../public/js/functions');
+const db = require('../util/database');
 
 exports.getEvents = async (req,res,next) => {
 
@@ -18,7 +19,7 @@ exports.getEvents = async (req,res,next) => {
         })
     }
 
-    Event.fetchEvents().then(resp => {
+    Event.fetchEvents(db).then(resp => {
         var aEvents = resp[0];
         // TODO: Exclude events added to the user's list
         

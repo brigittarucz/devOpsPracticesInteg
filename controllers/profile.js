@@ -3,6 +3,8 @@ const express = require('express');
 const { LocalStorage } = require('node-localstorage');
 localStorage = new LocalStorage('./local_storage');
 
+const db = require('../util/database');
+
 var utilities = require('../public/js/functions');
 const User = require('../models/user');
 const Event = require('../models/event');
@@ -21,7 +23,7 @@ exports.getProfile = (req,res,next) => {
         var sUserExists = user !== undefined ? true : false;
 
         if(sUserExists) {
-            Event.fetchEvents().then(results => {
+            Event.fetchEvents(db).then(results => {
                 // console.log(typeof(results[0]));
                 // console.log(results[0]);
                 var aTotalEvents = results[0];

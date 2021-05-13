@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Event = require('../models/event');
 const dbMaria = require('./db_test');
 const { expect } = require('chai');
 const uuid = require('uuid');
@@ -28,6 +29,51 @@ describe('Database core methods', () => {
             })
         })
     })
+    describe('Event handling', () => {
+        it('Fetching all events', (done) => {
+            Event.fetchEvents(dbMaria)
+            .then(res => {
+                var event = res[0][1];
+                expect(event.id).to.equal('5d8ade45-61cb-4cde-8a64-838d4a23541e');
+                done();
+            })
+            .catch(error => {
+                console.log('Events not retrieved: ', error);
+                done();
+            })
+        })
+    })
+})
+
+describe('Database queries', () => {
+    describe('User handling', () => {
+        it('Retrieves user by email', (done) => {
+            dbMaria.execute("SELECT * FROM users WHERE users.email = 'brigitt1a121@yahoo.com';")
+            .then(res => {
+                var user = res[0][0];
+                expect(user.id).to.equal('1c1903d7-e852-4578-8f39-69421a7849fa');
+                done();
+            })
+            .catch(error => {
+                console.log(error)
+                done();
+            })
+        }
+    )})
+    describe('Event handling', () => {
+        it('Retrieves event by title', (done) => {
+            dbMaria.execute("SELECT * FROM events WHERE events.title = 'Deep Dive Design Thinking Workshop';")
+            .then(res => {
+                var user = res[0][0];
+                expect(user.id).to.equal('3c1246a5-fee9-485d-adb3-24f029c528b4');
+                done();
+            })
+            .catch(error => {
+                console.log(error)
+                done();
+            })
+        }
+    )})
 })
 
 // "test": "nyc mocha --reporter spec",
