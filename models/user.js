@@ -22,8 +22,8 @@ module.exports = class User {
         [ this.id, this.email, this.password, this.proffesion, this.experience, this.interests, this.events]);
     }
 
-    static fetchUserById(id) {
-        return db.execute('SELECT * FROM users WHERE users.id = ?', [id]);
+    static fetchUserById(id, database) {
+        return database.execute('SELECT * FROM users WHERE users.id = ?', [id]);
     }
 
     saveUser() {

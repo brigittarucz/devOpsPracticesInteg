@@ -28,6 +28,15 @@ describe('Database core methods', () => {
                 done();
             })
         })
+        it('Fetching a user by id', (done) => {
+            User.fetchUserById(1, dbMaria)
+            .then(res => {
+                var user = res[0][0];
+                expect(user.email).to.equal('myemail@yahoo.com');
+                done();
+            })
+            .catch(error => console.log('User not created: ', error))
+        })
     })
     describe('Event handling', () => {
         it('Fetching all events', (done) => {
@@ -58,8 +67,9 @@ describe('Database queries', () => {
                 console.log(error)
                 done();
             })
-        }
-    )})
+        })
+    
+    })
     describe('Event handling', () => {
         it('Retrieves event by title', (done) => {
             dbMaria.execute("SELECT * FROM events WHERE events.title = 'Deep Dive Design Thinking Workshop';")

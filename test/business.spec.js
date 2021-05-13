@@ -42,6 +42,7 @@ describe("Business logic", function() {
             chai.request(app)
                 .get('/dashboard')
                 .end((err, res) => {
+                    console.log(err);
                     path = res.header.path;
                     expect(path).to.equal('/dashboard');
                     done();
