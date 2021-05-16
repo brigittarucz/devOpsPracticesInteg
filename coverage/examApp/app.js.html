@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>19/19</span>
+                <span class='fraction'>0/19</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>19/19</span>
+                <span class='fraction'>0/19</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -91,33 +91,31 @@
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,31 +123,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const path = require('path');
-const routes = require('./routes/routes');
-const compression = require('compression');
-const morgan = require('morgan');
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const express = <span class="cstat-no" title="statement not covered" >require('express');</span>
+const app = <span class="cstat-no" title="statement not covered" >express();</span>
+const bodyParser = <span class="cstat-no" title="statement not covered" >require('body-parser');</span>
+const path = <span class="cstat-no" title="statement not covered" >require('path');</span>
+const routes = <span class="cstat-no" title="statement not covered" >require('./routes/routes');</span>
+const compression = <span class="cstat-no" title="statement not covered" >require('compression');</span>
+const morgan = <span class="cstat-no" title="statement not covered" >require('morgan');</span>
 &nbsp;
-app.set('views', './views');
-app.set('view engine', 'ejs');
+<span class="cstat-no" title="statement not covered" >app.set('views', './views');</span>
+<span class="cstat-no" title="statement not covered" >app.set('view engine', 'ejs');</span>
 &nbsp;
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', routes);
+<span class="cstat-no" title="statement not covered" >app.use(bodyParser.urlencoded({ extended: false }));</span>
+<span class="cstat-no" title="statement not covered" >app.use(express.static(path.join(__dirname, 'public')));</span>
+<span class="cstat-no" title="statement not covered" >app.use('/', routes);</span>
 &nbsp;
 // App compression with compression
-app.use(compression());
+<span class="cstat-no" title="statement not covered" >app.use(compression());</span>
 &nbsp;
 // Logging with morgan
-const fs = require('fs');
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'accesss.log'), { flags: 'a' })
-app.use(morgan('combined', { stream: accessLogStream }));
+const fs = <span class="cstat-no" title="statement not covered" >require('fs');</span>
+const accessLogStream = <span class="cstat-no" title="statement not covered" >fs.createWriteStream(path.join(__dirname, 'accesss.log'), { flags: 'a' })</span>
+<span class="cstat-no" title="statement not covered" >app.use(morgan('combined', { stream: accessLogStream }));</span>
 &nbsp;
-console.log("Running on port 3000");
-app.listen(3000);
+<span class="cstat-no" title="statement not covered" >console.log("Running on port 3000");</span>
+<span class="cstat-no" title="statement not covered" >app.listen(3000);</span>
 &nbsp;
 // TEST THE DB
 // const db = require('./util/database'); // CONNECTION POOL
@@ -159,14 +159,14 @@ app.listen(3000);
 //     console.log(err);
 // });
 &nbsp;
-module.exports = app;</pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" >module.exports = app;</span></pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu May 13 2021 13:02:18 GMT+0200 (Central European Summer Time)
+                at Sun May 16 2021 14:14:03 GMT+0200 (Central European Summer Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

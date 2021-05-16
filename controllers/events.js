@@ -20,10 +20,11 @@ exports.getEvents = async (req,res,next) => {
     }
 
     Event.fetchEvents(db).then(resp => {
+
         var aEvents = resp[0];
         // TODO: Exclude events added to the user's list
         
-        User.fetchUserById(localStorage.getItem('sessionId')).then( user => {
+        User.fetchUserById(localStorage.getItem('sessionId'), db).then( user => {
             
             var user = user[0][0];
 
@@ -84,7 +85,7 @@ exports.postAddEvent = (req, res, next) => {
         })
     }
     
-    User.fetchUserById(localStorage.getItem('sessionId')).then( user => {
+    User.fetchUserById(localStorage.getItem('sessionId'), db).then( user => {
 
         // TODO: remove event node from main 
 

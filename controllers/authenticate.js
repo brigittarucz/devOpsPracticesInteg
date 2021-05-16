@@ -76,7 +76,7 @@ exports.postAuth = (req, res, next) => {
             res.redirect('/authenticate');
         }
 
-        fetchUser(req.body.email).then(result => {
+        fetchUser(req.body.email, db).then(result => {
             if(result[0].length) {
                 console.log(new Error("User already exists"));
                 res.redirect('/authenticate');

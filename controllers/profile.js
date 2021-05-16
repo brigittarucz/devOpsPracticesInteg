@@ -18,7 +18,7 @@ exports.getProfile = (req,res,next) => {
         })
     }
 
-    User.fetchUserById(localStorage.getItem('sessionId')).then( user => {
+    User.fetchUserById(localStorage.getItem('sessionId'), db).then( user => {
         var user = user[0][0];
         var sUserExists = user !== undefined ? true : false;
 
@@ -121,7 +121,7 @@ exports.postAddFromSuggested = (req, res, next) => {
         })
     }
 
-    User.fetchUserById(localStorage.getItem('sessionId')).then( user => {
+    User.fetchUserById(localStorage.getItem('sessionId'), db).then( user => {
 
         // TODO: remove event node from main 
 
@@ -169,7 +169,7 @@ exports.postProfile = (req, res, next) => {
     }
     // TODO: check for changes
 
-    User.fetchUserById(localStorage.getItem('sessionId')).then( user => {
+    User.fetchUserById(localStorage.getItem('sessionId'), id).then( user => {
 
         var sUserExists = user[0][0] !== undefined ? true : false;
 
@@ -245,7 +245,7 @@ exports.postDeleteFromCalendar = (req, res, next) => {
         })
     }
     
-    User.fetchUserById(localStorage.getItem('sessionId')).then( user => {
+    User.fetchUserById(localStorage.getItem('sessionId'), id).then( user => {
         var aUserEvents = JSON.parse(user[0][0].events);
         console.log(aUserEvents.length);
         for(let i = 0; i < aUserEvents.length; i++) {
