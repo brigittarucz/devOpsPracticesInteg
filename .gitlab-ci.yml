@@ -19,7 +19,7 @@ env_setup:
 
 testing:
   stage: test
-  script:
+  # script:
     # - eslint .
     # - npm test
 
