@@ -5,13 +5,14 @@ stages:
   - test
   - deploy
 
-# cache:
-#   paths:
-#     - node_modules/
+cache:
+  paths:
+    - node_modules/
 
 env_setup:
   stage: build
   script:
+    - npm cache clean --force
     - npm install
   artifacts:
     paths:
