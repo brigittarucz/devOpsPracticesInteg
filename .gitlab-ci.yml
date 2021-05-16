@@ -17,8 +17,8 @@ env_setup:
     paths:
       - node_modules/
 
-testing:
-  stage: test
+# testing:
+#   stage: test
   # script:
     # - eslint .
     # - npm test
