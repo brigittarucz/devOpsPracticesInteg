@@ -1,5 +1,5 @@
-const express = require('express');
-const fetch = require('node-fetch');
+// const express = require('express');
+// const fetch = require('node-fetch');
 
 const Event = require('../models/event');
 const User = require('../models/user');
@@ -9,9 +9,9 @@ localStorage = new LocalStorage('./local_storage');
 
 var utilities = require('../public/js/functions');
 
-exports.getEvents = async (req,res,next) => {
+exports.getEvents = async (req, res) => {
 
-    if(localStorage.getItem('sessionId') == null) {
+    if (localStorage.getItem('sessionId') == null) {
         return res.render('auth/authenticate', {
             pageTitle: 'Authentication',
         })
@@ -22,17 +22,18 @@ exports.getEvents = async (req,res,next) => {
 
         // TODO: Exclude events added to the user's list
 
-        User.fetchUserById(localStorage.getItem('sessionId')).then( user => {
+        // then(user) -> then(users)
+        User.fetchUserById(localStorage.getItem('sessionId')).then(aUser => {
 
-            var user = user[0][0];
+            var user = aUser[0][0];
 
             var aUserEvents = user.events;
             aUserEvents = aUserEvents.length ? JSON.parse(aUserEvents) : 0;
 
-            if(aUserEvents) {
-                for(let i = 0; i < aUserEvents.length; i++) {
-                    for(let j = 0; j < aEvents.length; j++) {
-                        if(aUserEvents[i] === aEvents[j].id) {
+            if (aUserEvents) {
+                for (let i = 0; i < aUserEvents.length; i++) {
+                    for (let j = 0; j < aEvents.length; j++) {
+                        if (aUserEvents[i] === aEvents[j].id) {
                             aEvents.splice(j, 1);
                             // console.log(aEvents);
                             break;
@@ -50,7 +51,7 @@ exports.getEvents = async (req,res,next) => {
                             sessionId: localStorage.getItem('sessionId')
                         })
                     })
-                }) 
+                })
             });
 
         }).catch(error => {
@@ -58,41 +59,41 @@ exports.getEvents = async (req,res,next) => {
             res.redirect('/dashboard');
         })
 
-        
+
     }).catch(error => {
         console.log(new Error(error));
         res.redirect('/dashboard');
     })
-   
+
 }
 
 
-exports.postAddEvent = (req, res, next) => {
+exports.postAddEvent = (req, res) => {
 
-    if(localStorage.getItem('sessionId') == null) {
+    if (localStorage.getItem('sessionId') == null) {
         return res.render('auth/authenticate', {
             pageTitle: 'Authentication',
         })
     }
-    
-    User.fetchUserById(localStorage.getItem('sessionId')).then( user => {
+
+    User.fetchUserById(localStorage.getItem('sessionId')).then(user => {
 
         // TODO: remove event node from main 
 
         var sUserExists = user[0][0] !== undefined ? true : false;
-        if(sUserExists) {
-            
+        if (sUserExists) {
+
             user = user[0][0];
             utilities.addToEventArray(user, req).then(result => {
 
-                if(!result) {
+                if (!result) {
                     console.log(new Error("Event already exists"));
                     return res.redirect('/dashboard');
                 }
 
                 var sUpdatedEvents = result;
-                
-                User.updateUserEvents(localStorage.getItem('sessionId'), sUpdatedEvents).then( () => {
+
+                User.updateUserEvents(localStorage.getItem('sessionId'), sUpdatedEvents).then(() => {
                     return res.redirect('/dashboard');
                 }).catch(error => {
                     console.log(new Error(error));
@@ -100,7 +101,7 @@ exports.postAddEvent = (req, res, next) => {
                 });
 
             });
- 
+
         } else {
             console.log(new Error("Invalid user id"));
             return res.redirect('/dashboard');
@@ -109,6 +110,6 @@ exports.postAddEvent = (req, res, next) => {
     }).catch(error => {
         console.log(new Error(error));
         return res.redirect('/dashboard');
-    })    
+    })
 }
 

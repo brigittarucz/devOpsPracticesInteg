@@ -13,5 +13,3 @@ RUN npm install
 RUN npm install -g eslint
 RUN npm install -g mocha
 RUN npm install -g chai
-
-#test
