@@ -1,51 +1,36 @@
-# image: registry.gitlab.com/brigittarucz/examApp
+image: registry.gitlab.com/brigittarucz/examApp
 
 stages:
-  # - build
+  - build
   # - test
   - deploy
 
-# cache:
-#   paths:
-#     - node_modules/
+cache:
+  paths:
+    - node_modules/
 
-# env_setup:
-#   image: registry.gitlab.com/brigittarucz/examApp
-#   stage: build
-#   script:
-#     - npm install
-#   artifacts:
-#     paths:
-#       - node_modules/
+env_setup:
+  stage: build
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
 
 # testing:
-#   image: registry.gitlab.com/brigittarucz/examApp
-#   stage: test
-#   script:
-#     - eslint .
-#     - npm test
+  # stage: test
+  # script:
+    # - eslint .
+    # - npm test
 
 pages:
-  # stage: deploy
-  # script:
-  #   - mkdir .public
-  #   - cp -r * .public
-  #   - mv .public public
-  # artifacts:
-  #   paths:
-  #     - public
-  # only:
-  #   - master
-  image: python:3.8
   stage: deploy
   script:
-      - pip install -r requirements.txt
-      # - make clean
-      # - make html
-      - mv ./ public
+    - mkdir .public
+    - cp -r * .public
+    - mv .public public
   artifacts:
-      paths:
-          - public
+    paths:
+      - public
   only:
-      - app_cicd
-
+    - master
