@@ -33,4 +33,5 @@ pages:
     paths:
       - public
   only:
-    - master
+    # - master
+    - app_cicd
