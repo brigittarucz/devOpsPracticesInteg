@@ -17,20 +17,33 @@ env_setup:
     paths:
       - node_modules/
 
-testing:
-  stage: test
-  script:
+# testing:
+  # stage: test
+  # script:
     # - eslint .
     # - npm test
 
 pages:
+  # stage: deploy
+  # script:
+  #   - mkdir .public
+  #   - cp -r * .public
+  #   - mv .public public
+  # artifacts:
+  #   paths:
+  #     - public
+  # only:
+  #   - master
+  image: python:3.8
   stage: deploy
   script:
-    - mkdir .public
-    - cp -r * .public
-    - mv .public public
+      - pip install -r requirements.txt
+      - make clean
+      - make html
+      - mv _build/html public
   artifacts:
-    paths:
-      - public
+      paths:
+          - public
   only:
-    - master
+      - app_cicd
+
