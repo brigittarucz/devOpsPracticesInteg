@@ -3,6 +3,12 @@ version: '3'
 
 services:
 
+  mariadb_dummy:
+    container_name: mariadb_dummy
+    build: ./integration/
+    ports: 
+      - "3308:3308"
+
   mariadb:
     container_name: mariadb
     image: mariadb:latest

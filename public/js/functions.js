@@ -18,14 +18,14 @@ module.exports.formatSimilarity = async function formatSimilarity(user, aEvents)
     if (!aEvents.length) {
         return [];
     }
-
+    
     for (const oEvent of aEvents) {
+
         var aProffessionalTarget = oEvent.proffessional_target.replace(/\s/g, '');
         aProffessionalTarget = aProffessionalTarget.split(',');
 
         for (let j = 0; j < aProffessionalTarget.length; j++) {
             var similarity = parseInt(similar_text(user.proffesion, aProffessionalTarget[j]));
-
             if (similarity > 10) {
                 oEvent.similarity = similarity;
                 break;
@@ -71,15 +71,22 @@ module.exports.formatPrice = async function formatPrice(user, aEvents) {
     }
 
     for (const oEvent of aEvents) {
-        if (oEvent.attendance_price.charAt(0) === 'F') {
-            var price = oEvent.attendance_price.slice(1, oEvent.attendance_price.length);
-            price = 'From ' + price + 'DKK';
-            oEvent.attendance_price = price;
-        } else if (oEvent.attendance_price.includes('NA')) {
-            oEvent.attendance_price = 'Not available';
-        } else if (oEvent.attendance_price === '0') {
-            oEvent.attendance_price = 'Free';
+        if(typeof(oEvent.attendance_price) === "string") {
+            if (oEvent.attendance_price.charAt(0) === 'F') {
+                var price = oEvent.attendance_price.slice(1, oEvent.attendance_price.length);
+                price = 'From ' + price + 'DKK';
+                oEvent.attendance_price = price;
+            } else if (oEvent.attendance_price.includes('NA')) {
+                oEvent.attendance_price = 'Not available';
+            } else if (oEvent.attendance_price === '0') {
+                oEvent.attendance_price = 'Free';
+            } else {
+                oEvent.attendance_price = '';
+            }
+        } else {
+            oEvent.attendance_price = '';
         }
+       
 
         if (typeof (oEvent.topics) === 'string') {
             oEvent.topics = oEvent.topics.split(', ');
@@ -94,7 +101,7 @@ module.exports.addToEventArray = async function addToEventArray(user, req) {
     if (!user.events.length) {
         var aUpdatedEvents = [];
         aUpdatedEvents.push(req.body.eventId);
-        let sUpdatedEvents = JSON.stringify(aUpdatedEvents);
+        var sUpdatedEvents = JSON.stringify(aUpdatedEvents);
         return sUpdatedEvents;
     } else {
 
@@ -111,7 +118,7 @@ module.exports.addToEventArray = async function addToEventArray(user, req) {
 
         if (!eventExists) {
             aUserEvents.push(req.body.eventId);
-            let sUpdatedEvents = JSON.stringify(aUserEvents);
+            var sUpdatedEvents = JSON.stringify(aUserEvents);
             return sUpdatedEvents;
         } else {
             return 0;

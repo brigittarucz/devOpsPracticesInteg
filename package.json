@@ -3,8 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "nyc": {
+    "all": true,
+    "branches": 30,
+    "lines": 50,
+    "exclude": [
+      "**/*window-location.js",
+      "**/*coverage"
+    ]
+  },
   "scripts": {
-    "test": "mocha tests",
+    "test": "nyc --reporter=html --reporter=text --check-coverage=true mocha",
     "start": "nodemon app.js",
     "compile:sass": "node-sass sass/main.scss public/css/style.css -w"
   },
@@ -12,8 +21,9 @@
   "license": "ISC",
   "devDependencies": {
     "cssnano": "^4.1.10",
+    "eslint-plugin-ejs": "0.0.2",
     "mocha": "^8.4.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^5.0",
     "nodemon": "^2.0.6",
     "sass": "^1.27.0"
   },
@@ -31,6 +41,7 @@
     "mysql2": "^2.2.5",
     "node-fetch": "^2.6.1",
     "node-localstorage": "^2.1.6",
+    "nyc": "^15.1.0",
     "uuid": "^8.3.1"
   }
 }

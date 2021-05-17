@@ -1,5 +1,5 @@
-// const express = require('express');
-const db = require('../util/database');
+const express = require('express');
+
 
 module.exports = class Event {
     constructor(id, title, date, location, topics, proffessional_target, topics_difficulty, event_link, attendance_price) {
@@ -14,7 +14,7 @@ module.exports = class Event {
         this.attendance_price = attendance_price;
     }
 
-    static fetchEvents() {
-        return db.execute('SELECT * FROM events');
+    static fetchEvents(database) {
+        return database.execute('SELECT * FROM events');
     }
 }

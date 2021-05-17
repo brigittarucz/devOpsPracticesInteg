@@ -1,5 +1,8 @@
 CREATE DATABASE IF NOT EXISTS techevents_users;
 
+-- CREATE USER 'my-app-user'@'%' IDENTIFIED BY 'my-app-password';
+GRANT ALL ON *.* TO 'root'@'%';
+
 CREATE TABLE IF NOT EXISTS techevents_users.users(
     id VARCHAR(36) NOT NULL UNIQUE,
     email VARCHAR(45) NOT NULL UNIQUE,
