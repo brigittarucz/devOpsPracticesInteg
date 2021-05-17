@@ -1,4 +1,4 @@
-image: registry.gitlab.com/brigittarucz/examApp
+image: registry.gitlab.com/brigittarucz/examapp
 
 stages:
   - build
