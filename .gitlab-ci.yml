@@ -1,4 +1,4 @@
-image: registry.gitlab.com/brigittarucz/examApp
+# image: registry.gitlab.com/brigittarucz/examapp
 
 stages:
   - build
@@ -10,6 +10,7 @@ cache:
     - node_modules/
 
 env_setup:
+  image: registry.gitlab.com/brigittarucz/examapp
   stage: build
   script:
     - npm install
@@ -17,9 +18,10 @@ env_setup:
     paths:
       - node_modules/
 
-# testing:
-  # stage: test
-  # script:
+testing:
+  image: registry.gitlab.com/brigittarucz/examapp
+  stage: test
+  script:
     # - eslint .
     # - npm test
 
