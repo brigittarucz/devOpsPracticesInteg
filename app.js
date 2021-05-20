@@ -1,8 +1,3 @@
-/**
- * JSDoc Test
- * This is app.js.
- * @param {string} test - Testing
- */
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
