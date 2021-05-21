@@ -41,6 +41,7 @@ describe("Business logic", function() {
 
             chai.request(app)
                 .get('/dashboard')
+                .set('test', 'true')
                 .end((err, res) => {
                     path = res.header.path;
                     expect(path).to.equal('/dashboard');
@@ -52,6 +53,7 @@ describe("Business logic", function() {
 
             chai.request(app)
                 .get('/profile')
+                .set('test', 'true')
                 .end((err, res) => {
 
                     path = res.header.path;

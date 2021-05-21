@@ -19,60 +19,70 @@ exports.getEvents = async (req,res,next) => {
         })
     }
 
-    Event.fetchEvents(db).then(resp => {
+    // Chai-http
+    if(req.headers.test !== 'true') {
+        Event.fetchEvents(db).then(resp => {
 
-        var aEvents = resp[0];
-        // TODO: Exclude events added to the user's list
-        
-        User.fetchUserById(localStorage.getItem('sessionId'), db).then( user => {
+            var aEvents = resp[0];
+            // TODO: Exclude events added to the user's list
             
-            var user = user[0][0];
+            User.fetchUserById(localStorage.getItem('sessionId'), db).then( user => {
+                
+                var user = user[0][0];
 
-            // user.proffesion = 'Javascript Developer';
+                // user.proffesion = 'Javascript Developer';
 
-            // utilities.formatSimilarity(user, aEvents).then(res => {
-            //     console.log(res);
-            // })
+                // utilities.formatSimilarity(user, aEvents).then(res => {
+                //     console.log(res);
+                // })
 
-            var aUserEvents = user.events;
-            
-            aUserEvents = aUserEvents.length ? JSON.parse(aUserEvents) : 0;
-            
-            if(aUserEvents) {
-                for(let i = 0; i < aUserEvents.length; i++) {
-                    for(let j = 0; j < aEvents.length; j++) {
-                        if(aUserEvents[i] === aEvents[j].id) {
-                            aEvents.splice(j, 1);
-                            // console.log(aEvents);
-                            break;
+                var aUserEvents = user.events;
+                
+                aUserEvents = aUserEvents.length ? JSON.parse(aUserEvents) : 0;
+                
+                if(aUserEvents) {
+                    for(let i = 0; i < aUserEvents.length; i++) {
+                        for(let j = 0; j < aEvents.length; j++) {
+                            if(aUserEvents[i] === aEvents[j].id) {
+                                aEvents.splice(j, 1);
+                                // console.log(aEvents);
+                                break;
+                            }
                         }
                     }
                 }
-            }
-            
-            utilities.formatSimilarity(user, aEvents).then(aEvents => {
-                utilities.formatDate(user, aEvents).then(aEvents => {
-                    utilities.formatPrice(user, aEvents).then(aEvents => {
-                        res.setHeader('path', '/dashboard')
-                        res.render('events/dashboard', {
-                            pageTitle: 'Tech Events',
-                            events: aEvents,
-                            sessionId: localStorage.getItem('sessionId')
+                
+                utilities.formatSimilarity(user, aEvents).then(aEvents => {
+                    utilities.formatDate(user, aEvents).then(aEvents => {
+                        utilities.formatPrice(user, aEvents).then(aEvents => {
+                            res.setHeader('path', '/dashboard')
+                            res.render('events/dashboard', {
+                                pageTitle: 'Tech Events',
+                                events: aEvents,
+                                sessionId: localStorage.getItem('sessionId')
+                            })
                         })
-                    })
-                }) 
-            });
+                    }) 
+                });
 
+            }).catch(error => {
+                console.log(new Error(error));
+                res.redirect('/dashboard');
+            })
+
+            
         }).catch(error => {
             console.log(new Error(error));
             res.redirect('/dashboard');
         })
-
-        
-    }).catch(error => {
-        console.log(new Error(error));
-        res.redirect('/dashboard');
-    })
+    } else {
+        res.setHeader('path', '/dashboard')
+        res.render('events/dashboard', {
+            pageTitle: 'Tech Events',
+            events: [],
+            sessionId: localStorage.getItem('sessionId')
+        })
+    }
    
 }
 

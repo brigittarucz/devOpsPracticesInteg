@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">86.67% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>13/15</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.67% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">86.67% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>13/15</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -95,37 +95,32 @@
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -133,32 +128,37 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const e = <span class="cstat-no" title="statement not covered" >require('express');</span>
-const db = <span class="cstat-no" title="statement not covered" >require('../util/database'); </span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const e = require('express');
+const db = require('../util/database'); 
 &nbsp;
-<span class="cstat-no" title="statement not covered" >module.exports = class User {</span>
-<span class="fstat-no" title="function not covered" >    co</span>nstructor(id, email, password, proffesion, experience, interests, events) {
-<span class="cstat-no" title="statement not covered" >        this.id = id;</span>
-<span class="cstat-no" title="statement not covered" >        this.email = email;</span>
+module.exports = class User {
+    constructor(id, email, password, proffesion, experience, interests, events) {
+        this.id = id;
+        this.email = email;
         // TODO: hash
-<span class="cstat-no" title="statement not covered" >        this.password = password;</span>
-<span class="cstat-no" title="statement not covered" >        this.proffesion = proffesion;</span>
-<span class="cstat-no" title="statement not covered" >        this.experience = experience;</span>
-<span class="cstat-no" title="statement not covered" >        this.interests = interests;</span>
-<span class="cstat-no" title="statement not covered" >        this.events = events;</span>
+        this.password = password;
+        this.proffesion = proffesion;
+        this.experience = experience;
+        this.interests = interests;
+        this.events = events;
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    st</span>atic fetchUser(email, database) {
-<span class="cstat-no" title="statement not covered" >        return database.execute('SELECT * FROM users WHERE email = ?', [email]);</span>
+    static fetchUser(email, database) {
+        return database.execute('SELECT * FROM users WHERE email = ?', [email]);
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    cr</span>eateUser(database) {
-<span class="cstat-no" title="statement not covered" >        return database.execute('INSERT INTO users (id, email, password, proffesion, experience, interests, events) VALUES (?, ?, ?, ?, ?, ?, ?)',</span>
+    createUser(database) {
+        return database.execute('INSERT INTO users (id, email, password, proffesion, experience, interests, events) VALUES (?, ?, ?, ?, ?, ?, ?)',
         [ this.id, this.email, this.password, this.proffesion, this.experience, this.interests, this.events]);
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    st</span>atic fetchUserById(id, database) {
-<span class="cstat-no" title="statement not covered" >        return database.execute('SELECT * FROM users WHERE users.id = ?', [id]);</span>
+    static fetchUserById(id, database) {
+        return database.execute('SELECT * FROM users WHERE users.id = ?', [id]);
     }
 &nbsp;
 <span class="fstat-no" title="function not covered" >    sa</span>veUser() {
@@ -178,7 +178,7 @@ const db = <span class="cstat-no" title="statement not covered" >require('../uti
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri May 21 2021 09:57:00 GMT+0200 (Central European Summer Time)
+                at Fri May 21 2021 10:36:08 GMT+0200 (Central European Summer Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

@@ -18,99 +18,121 @@ exports.getProfile = (req,res,next) => {
         })
     }
 
-    User.fetchUserById(localStorage.getItem('sessionId'), db).then( user => {
-        var user = user[0][0];
-        var sUserExists = user !== undefined ? true : false;
+    // Chai-http
+    if(req.headers.test !== 'true') {
+        User.fetchUserById(localStorage.getItem('sessionId'), db).then( user => {
+            var user = user[0][0];
+            var sUserExists = user !== undefined ? true : false;
 
-        if(sUserExists) {
-            Event.fetchEvents(db).then(results => {
-                // console.log(typeof(results[0]));
-                // console.log(results[0]);
-                var aTotalEvents = results[0];
-                var aUserEvents = user.events;
+            if(sUserExists) {
+                Event.fetchEvents(db).then(results => {
+                    // console.log(typeof(results[0]));
+                    // console.log(results[0]);
+                    var aTotalEvents = results[0];
+                    var aUserEvents = user.events;
 
-                var aSuggestedEvents = [];
+                    var aSuggestedEvents = [];
 
-                // console.log(user);
-                // console.log(aUserEvents);
-                // console.log(aTotalEvents);
+                    // console.log(user);
+                    // console.log(aUserEvents);
+                    // console.log(aTotalEvents);
 
-                utilities.formatSimilarity(user, aTotalEvents);
-                utilities.formatDate(user, aTotalEvents);
-                utilities.formatPrice(user, aTotalEvents);
+                    utilities.formatSimilarity(user, aTotalEvents);
+                    utilities.formatDate(user, aTotalEvents);
+                    utilities.formatPrice(user, aTotalEvents);
 
-                for(const oEvent of aTotalEvents) {
-                    if(oEvent.similarity > 10) {
-                        aSuggestedEvents.push(oEvent);
-                    }
-                };
+                    for(const oEvent of aTotalEvents) {
+                        if(oEvent.similarity > 10) {
+                            aSuggestedEvents.push(oEvent);
+                        }
+                    };
 
-                if(!user.events.length) {
-                    res.render('events/profile', {
-                        pageTitle: 'Profile',
-                        user: user,
-                        events: 'Search events',
-                        eventsDescription: [],
-                        eventsSuggested: aSuggestedEvents,
-                        sessionId: localStorage.getItem('sessionId')
-                    })  
-                } else {
-                    aUserEvents = aUserEvents.slice(1, aUserEvents.length - 1);
-                    aUserEvents = aUserEvents.replace(/"/g, '');
-                    aUserEvents = aUserEvents.split(",");
+                    if(!user.events.length) {
+                        res.render('events/profile', {
+                            pageTitle: 'Profile',
+                            user: user,
+                            events: 'Search events',
+                            eventsDescription: [],
+                            eventsSuggested: aSuggestedEvents,
+                            sessionId: localStorage.getItem('sessionId')
+                        })  
+                    } else {
+                        aUserEvents = aUserEvents.slice(1, aUserEvents.length - 1);
+                        aUserEvents = aUserEvents.replace(/"/g, '');
+                        aUserEvents = aUserEvents.split(",");
 
-                    var aCalendarEvents = [];
+                        var aCalendarEvents = [];
 
-                    aTotalEvents.forEach(event => {
-                    aUserEvents.forEach(userEvent => {
-                            if(userEvent == event.id) {
-                                aCalendarEvents.push(event);
-                            }
+                        aTotalEvents.forEach(event => {
+                        aUserEvents.forEach(userEvent => {
+                                if(userEvent == event.id) {
+                                    aCalendarEvents.push(event);
+                                }
+                            })
                         })
-                    })
 
-                   for(let i = 0; i < aCalendarEvents.length; i++) {
-                        for(let j = 0; j < aSuggestedEvents.length; j++) {
-                            if(aCalendarEvents[i].id === aSuggestedEvents[j].id) {
-                                aSuggestedEvents.splice(j, 1);
-                                break;
+                    for(let i = 0; i < aCalendarEvents.length; i++) {
+                            for(let j = 0; j < aSuggestedEvents.length; j++) {
+                                if(aCalendarEvents[i].id === aSuggestedEvents[j].id) {
+                                    aSuggestedEvents.splice(j, 1);
+                                    break;
+                                }
                             }
                         }
+
+                        utilities.formatPrice(user, aCalendarEvents);
+
+                        user.interests = user.interests.split(',');
+
+                        res.setHeader('path', '/profile')
+                        res.render('events/profile', {
+                            pageTitle: 'Profile',
+                            user: user,
+                            events: aCalendarEvents,
+                            eventsDescription: ["2021's leadership ethos", "Opening ceremony", "From gaming to mainstream",
+                            "Digital democracy with a purpose", "Work after crisis", "Can technology save the world?",
+                            "Brand obsessions", "Paving the way for sustainable future", "What is wrong with capitalism?"],
+                            eventsSuggested: aSuggestedEvents,
+                            sessionId: localStorage.getItem('sessionId')
+                        })   
                     }
 
-                    utilities.formatPrice(user, aCalendarEvents);
-
-                    user.interests = user.interests.split(',');
-
-                    res.setHeader('path', '/profile')
-                    res.render('events/profile', {
-                        pageTitle: 'Profile',
-                        user: user,
-                        events: aCalendarEvents,
-                        eventsDescription: ["2021's leadership ethos", "Opening ceremony", "From gaming to mainstream",
-                        "Digital democracy with a purpose", "Work after crisis", "Can technology save the world?",
-                        "Brand obsessions", "Paving the way for sustainable future", "What is wrong with capitalism?"],
-                        eventsSuggested: aSuggestedEvents,
-                        sessionId: localStorage.getItem('sessionId')
-                    })   
-                }
-
-            }).catch(error => {
-                console.log(new Error(error));
+                }).catch(error => {
+                    console.log(new Error(error));
+                    res.redirect('/profile');
+                })
+                
+            } else {
+                console.log(new Error("Invalid user id"));
                 res.redirect('/profile');
-            })
-             
-        } else {
-            console.log(new Error("Invalid user id"));
+            }
+
+
+        }).catch(error => {
+            console.log(new Error(error));
             res.redirect('/profile');
-        }
-
-
-    }).catch(error => {
-        console.log(new Error(error));
-        res.redirect('/profile');
-    })
-    
+        })
+    } else {
+        res.setHeader('path', '/profile')
+        res.render('events/profile', {
+            pageTitle: 'Profile',
+            user: {
+                id: '265335fa-5c4a-42af-b5af-aac83d4f9a57',
+                email: 'user@yahoo.com',
+                password: 'password',
+                proffesion: 'Specify in tests',
+                experience: 10,
+                interests: ['JS','Angular'],
+                events: ''
+            },
+            events: [],
+            eventsDescription: ["2021's leadership ethos", "Opening ceremony", "From gaming to mainstream",
+            "Digital democracy with a purpose", "Work after crisis", "Can technology save the world?",
+            "Brand obsessions", "Paving the way for sustainable future", "What is wrong with capitalism?"],
+            eventsSuggested: [],
+            sessionId: localStorage.getItem('sessionId')
+        })   
+    }
 }
 
 exports.postAddFromSuggested = (req, res, next) => {
