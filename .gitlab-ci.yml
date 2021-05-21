@@ -1,5 +1,8 @@
 image: registry.gitlab.com/brigittarucz/examapp
 
+services:
+  - mariadb:latest
+
 stages:
   - build
   - test
@@ -20,8 +23,7 @@ env_setup:
 testing:
   stage: test
   script:
-    - npm test
-    - cat coverage.txt
+    - nyc --reporter=text-summary --check-coverage=true mocha --exit
 
 pages:
   stage: deploy
