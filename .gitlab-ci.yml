@@ -32,7 +32,6 @@ env_setup:
       - node_modules/
 
 testing:
-  image: brigdocker/tech_app:latest
   stage: test
   script:
     - npm run coverage
