@@ -23,6 +23,8 @@ env_setup:
 testing:
   stage: test
   script:
+    - npm install
+  script:
     - nyc --reporter=text-summary --check-coverage=true mocha --exit
 
 pages:
