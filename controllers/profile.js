@@ -169,7 +169,7 @@ exports.postProfile = (req, res, next) => {
     }
     // TODO: check for changes
 
-    User.fetchUserById(localStorage.getItem('sessionId'), id).then( user => {
+    User.fetchUserById(localStorage.getItem('sessionId'), db).then( user => {
 
         var sUserExists = user[0][0] !== undefined ? true : false;
 
@@ -239,13 +239,13 @@ exports.postProfile = (req, res, next) => {
 
 exports.postDeleteFromCalendar = (req, res, next) => {
 
-    if(localStorage.getItem('sessionId') == null) {
-        return res.render('auth/authenticate', {
-            pageTitle: 'Authentication',
-        })
-    }
+    // if(localStorage.getItem('sessionId') == null) {
+    //     return res.render('auth/authenticate', {
+    //         pageTitle: 'Authentication',
+    //     })
+    // }
     
-    User.fetchUserById(localStorage.getItem('sessionId'), id).then( user => {
+    User.fetchUserById(localStorage.getItem('sessionId'), db).then( user => {
         var aUserEvents = JSON.parse(user[0][0].events);
         console.log(aUserEvents.length);
         for(let i = 0; i < aUserEvents.length; i++) {

@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/47</span>
+                <span class='fraction'>0/46</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/46</span>
+                <span class='fraction'>0/45</span>
             </div>
         
             
@@ -190,7 +190,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -227,6 +226,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const app = <span class="cstat-no" title="statement not covered" >require('../app');</span>
@@ -273,46 +273,46 @@ var USER_ID = <span class="cstat-no" title="statement not covered" >'265335fa-5c
 <span class="cstat-no" title="statement not covered" >            chai.request(app)</span>
                 .get('/dashboard')
                 .end(<span class="fstat-no" title="function not covered" >(e</span>rr, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >                    path = res.header.</span>path;
-<span class="cstat-no" title="statement not covered" >                    expect(path).to.equal('/</span>dashboard');
+<span class="cstat-no" title="statement not covered" >                    path = res.header.path;</span>
+<span class="cstat-no" title="statement not covered" >                    expect(path).to.equal('/dashboard');</span>
 <span class="cstat-no" title="statement not covered" >                    done();</span>
-                })<span class="cstat-no" title="statement not covered" ></span>
+                })
         })
-        it("GET /profile", (done) =&gt; {
-<span class="cstat-no" title="statement not covered" >            localStorage.se<span class="fstat-no" title="function not covered" >tI</span>tem('sessionId', USER_ID);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-            chai.request(app)
-<span class="cstat-no" title="statement not covered" >                .get('/profile')</span>
-                .end((err, res) =&gt; {
-<span class="fstat-no" title="function not covered" ></span>
-                    path = res.header.path;
-<span class="cstat-no" title="statement not covered" >                    expect(path).to.equal('/</span>profile');
+<span class="cstat-no" title="statement not covered" >        it("GET /profile", <span class="fstat-no" title="function not covered" >(d</span>one) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            localStorage.setItem('sessionId', USER_ID);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            chai.request(app)</span>
+                .get('/profile')
+                .end(<span class="fstat-no" title="function not covered" >(e</span>rr, res) =&gt; {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    path = res.header.path;</span>
+<span class="cstat-no" title="statement not covered" >                    expect(path).to.equal('/profile');</span>
 <span class="cstat-no" title="statement not covered" >                    done();</span>
-                })<span class="cstat-no" title="statement not covered" ></span>
-        })
-    })
-    describe("Checks 404 with incorrect route", function() {
-<span class="cstat-no" title="statement not covered" >        it("GET /incorrect", (done) =&gt; {<span class="fstat-no" title="function not covered" ></span></span>
-<span class="cstat-no" title="statement not covered" >            localStorage.setI<span class="fstat-no" title="function not covered" >te</span>m('sessionId', USER_ID);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-            chai.request(app)
-<span class="cstat-no" title="statement not covered" >                .get('/incorrect')</span>
-                .end((err, res) =&gt; {
-<span class="fstat-no" title="function not covered" ></span>
-                    res.should.have.status(404);
-<span class="cstat-no" title="statement not covered" >                    done();</span>
-                })<span class="cstat-no" title="statement not covered" ></span>
+                })
         })
     })
-    describe("Checks authentication through signup", function() {
-<span class="cstat-no" title="statement not covered" >        it('POST /authenticate', function (done) {<span class="fstat-no" title="function not covered" ></span></span>
-<span class="cstat-no" title="statement not covered" >            chai.request(app)<span class="fstat-no" title="function not covered" ></span></span>
-<span class="cstat-no" title="statement not covered" >                .post('/authenticate')</span>
+<span class="cstat-no" title="statement not covered" >    describe("Checks 404 with incorrect route", <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
+<span class="cstat-no" title="statement not covered" >        it("GET /incorrect", <span class="fstat-no" title="function not covered" >(d</span>one) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            localStorage.setItem('sessionId', USER_ID);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            chai.request(app)</span>
+                .get('/incorrect')
+                .end(<span class="fstat-no" title="function not covered" >(e</span>rr, res) =&gt; {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    res.should.have.status(404);</span>
+<span class="cstat-no" title="statement not covered" >                    done();</span>
+                })
+        })
+    })
+<span class="cstat-no" title="statement not covered" >    describe("Checks authentication through signup", <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
+<span class="cstat-no" title="statement not covered" >        it('POST /authenticate', <span class="fstat-no" title="function not covered" >fu</span>nction (done) {</span>
+<span class="cstat-no" title="statement not covered" >            chai.request(app)</span>
+                .post('/authenticate')
                 .send({ email: 'brigitta2@yahoo.com', password: 'password' })
-                .end(function (error, response, body) {
-                    i<span class="fstat-no" title="function not covered" >f </span>(error) { done(error); }
-<span class="cstat-no" title="statement not covered" >                    else { done()<span class="cstat-no" title="statement not covered" >; }</span></span>
-                });<span class="cstat-no" title="statement not covered" ></span>
+                .end(<span class="fstat-no" title="function not covered" >fu</span>nction (error, response, body) {
+<span class="cstat-no" title="statement not covered" >                    if (error) { <span class="cstat-no" title="statement not covered" >done(error); </span>}</span>
+                    else { <span class="cstat-no" title="statement not covered" >done(); </span>}
+                });
         });
     })
 })</pre></td></tr></table></pre>
@@ -322,7 +322,7 @@ var USER_ID = <span class="cstat-no" title="statement not covered" >'265335fa-5c
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun May 16 2021 14:14:03 GMT+0200 (Central European Summer Time)
+                at Fri May 21 2021 09:57:00 GMT+0200 (Central European Summer Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

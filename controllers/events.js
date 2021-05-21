@@ -79,11 +79,12 @@ exports.getEvents = async (req,res,next) => {
 
 exports.postAddEvent = (req, res, next) => {
 
-    if(localStorage.getItem('sessionId') == null) {
-        return res.render('auth/authenticate', {
-            pageTitle: 'Authentication',
-        })
-    }
+    console.log(localStorage.getItem('sessionId'))
+    // if(localStorage.getItem('sessionId') == null) {
+    //     return res.render('auth/authenticate', {
+    //         pageTitle: 'Authentication',
+    //     })
+    // }
     
     User.fetchUserById(localStorage.getItem('sessionId'), db).then( user => {
 

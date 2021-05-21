@@ -8,6 +8,9 @@ services:
     build: ./integration/
     ports: 
       - "3308:3308"
+    depends_on:
+      - nodeapp
+      - mariadb
 
   mariadb:
     container_name: mariadb
