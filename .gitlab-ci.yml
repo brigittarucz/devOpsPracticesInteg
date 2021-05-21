@@ -1,7 +1,7 @@
 image: registry.gitlab.com/brigittarucz/examapp
 
 services:
-  - mariadb: mariadb:latest
+  - name: mariadb:latest
 
 variables:
   MYSQL_DATABASE: techevents_users
