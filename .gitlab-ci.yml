@@ -20,7 +20,7 @@ env_setup:
 testing:
   stage: test
   script:
-    - npm coverage
+    - npm run coverage
 
 pages:
   stage: deploy
