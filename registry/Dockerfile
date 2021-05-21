@@ -5,10 +5,10 @@ RUN apk update && \
 
 # COPY ./ .
 
-RUN npm install -g npm@7.14.0
+# RUN npm install -g npm@7.14.0
 # CMD ["sh", "./commands.sh"]
 
-CMD tail -f /dev/null
+ENTRYPOINT ["tail", "-f", "/dev/null"]
 # RUN kill $(lsof -t -i:3000)
 # RUN npm test
 # RUN npm install -g eslint
