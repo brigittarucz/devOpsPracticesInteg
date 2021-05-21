@@ -23,8 +23,11 @@ env_setup:
 testing:
   stage: test
   script:
-    - npm install -g nyc
+    - npm install 
     - nyc --reporter=text-summary --check-coverage=true mocha --exit
+  artifacts:
+    paths:
+      - node_modules/
 
 pages:
   stage: deploy
