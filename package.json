@@ -15,6 +15,7 @@
   },
   "scripts": {
     "test": "nyc --reporter=text-summary --check-coverage=true mocha --exit > coverage.txt",
+    "coverage": "nyc --reporter=text-summary mocha",
     "start": "nodemon app.js",
     "compile:sass": "node-sass sass/main.scss public/css/style.css -w"
   },

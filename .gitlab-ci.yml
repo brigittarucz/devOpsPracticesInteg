@@ -1,8 +1,5 @@
 image: registry.gitlab.com/brigittarucz/examapp
 
-services:
-  - mariadb:latest
-
 stages:
   - build
   - test
@@ -23,11 +20,7 @@ env_setup:
 testing:
   stage: test
   script:
-    - npm install 
-    - nyc --reporter=text-summary --check-coverage=true mocha --exit
-  artifacts:
-    paths:
-      - node_modules/
+    - npm coverage
 
 pages:
   stage: deploy
