@@ -1,5 +1,13 @@
 image: registry.gitlab.com/brigittarucz/examapp
 
+services:
+  - mariadb: mariadb:latest
+
+variables:
+  MYSQL_DATABASE: techevents_users
+  MYSQL_ROOT_PASSWORD: password
+  MYSQL_USER: root
+
 stages:
   - build
   - test
