@@ -1,15 +1,17 @@
-FROM node:15.11.0-alpine3.13
+FROM brigdocker/tech_app:latest
 
 RUN apk update && \
     apk upgrade 
 
-RUN mkdir -p /usr/src/node-app
 
-WORKDIR /usr/src/node-app
+# WORKDIR /usr/src/node-app
 
-COPY . /usr/src/node-app
 
-# RUN npm install
+RUN npm install
+RUN npm test
 # RUN npm install -g eslint
 # RUN npm install -g mocha
 # RUN npm install -g chai
+
+# docker build -t test .
+# docker run -dp 2000:2000 test
