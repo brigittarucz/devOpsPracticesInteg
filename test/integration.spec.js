@@ -88,5 +88,6 @@ describe('Database queries', () => {
 
 after(() => { dbMaria.end() })
 
+// kill $(lsof -t -i:3000)
 // "test": "nyc mocha --reporter spec",
 // "test": "nyc --reporter=html --reporter=text --check-coverage=true mocha",
