@@ -8,6 +8,12 @@ variables:
   MYSQL_ROOT_PASSWORD: password
   MYSQL_USER: root
 
+connect:
+  image: mysql
+  script:
+  - echo "SELECT 'OK';" | mysql --user=root --password=password --host=mariadb techevents_users
+
+
 stages:
   - build
   - test
