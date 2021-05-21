@@ -86,5 +86,7 @@ describe('Database queries', () => {
     )})
 })
 
+after(() => { dbMaria.end() })
+
 // "test": "nyc mocha --reporter spec",
 // "test": "nyc --reporter=html --reporter=text --check-coverage=true mocha",
