@@ -17,7 +17,7 @@ variables:
 #   image: mysql
 #   script:
 #   - echo "SELECT 'OK';" | mysql --user=root --password=password --host=mariadb techevents_users
-#
+
 stages:
   - build
   - test
