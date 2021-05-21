@@ -5,16 +5,16 @@
   "main": "index.js",
   "nyc": {
     "all": true,
-    "branches": 20,
-    "lines": 50,
-    "statements": 50,
+    "branches": 15,
+    "lines": 45,
+    "statements": 45,
     "exclude": [
       "**/*window-location.js",
       "**/*coverage"
     ]
   },
   "scripts": {
-    "test": "nyc --reporter=text-summary --check-coverage=true mocha --exit > coverage.txt && mocha --exit",
+    "test": "nyc --reporter=text-summary --check-coverage=true mocha --exit > coverage.txt",
     "start": "nodemon app.js",
     "compile:sass": "node-sass sass/main.scss public/css/style.css -w"
   },
