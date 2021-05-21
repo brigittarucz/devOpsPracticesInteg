@@ -1,17 +1,17 @@
-default:
-  image: registry.gitlab.com/brigittarucz/examapp
-  services:
-    - name: mariadb:latest
-      alias: mariadb
+# default:
+image: registry.gitlab.com/brigittarucz/examapp
+  # services:
+  #   - name: mariadb:latest
+  #     alias: mariadb
 
 cache:
   paths:
     - node_modules/
 
-variables:
-  MYSQL_USER: root
-  MYSQL_ROOT_PASSWORD: password
-  MYSQL_DATABASE: techevents_users
+# variables:
+#   MYSQL_USER: root
+#   MYSQL_ROOT_PASSWORD: password
+#   MYSQL_DATABASE: techevents_users
 
 # connect:
 #   image: mysql
