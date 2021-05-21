@@ -1,47 +1,50 @@
 Running on port 5000
 
-  1) Uncaught error outside test suite
 
-  0 passing (3ms)
-  1 failing
+  Business logic
+    Checks page flow without authentication
+      ✓ GET /dashboard
+      ✓ GET /profile
+    Checks page flow with authentication
+      ✓ GET /dashboard (38ms)
+      ✓ GET /profile
+    Checks 404 with incorrect route
+      ✓ GET /incorrect
+    Checks authentication through signup
+      ✓ POST /authenticate
 
-  1) Uncaught error outside test suite:
-     Uncaught Error: listen EADDRINUSE: address already in use :::5000
-      at Server.setupListenHandle [as _listen2] (net.js:1280:14)
-      at listenInCluster (net.js:1328:12)
-      at Server.listen (net.js:1415:7)
-      at Function.listen (node_modules/express/lib/application.js:618:24)
-      at Object.<anonymous> (app.js:4:332)
-      at Module._compile (internal/modules/cjs/loader.js:778:30)
-      at Module.replacementCompile (node_modules/append-transform/index.js:60:13)
-      at Module._extensions..js (internal/modules/cjs/loader.js:789:10)
-      at Object.<anonymous> (node_modules/append-transform/index.js:64:4)
-      at Module.load (internal/modules/cjs/loader.js:653:32)
-      at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
-      at Function.Module._load (internal/modules/cjs/loader.js:585:3)
-      at Module.require (internal/modules/cjs/loader.js:692:17)
-      at require (internal/modules/cjs/helpers.js:25:18)
-      at Object.<anonymous> (test/business.spec.js:2:127)
-      at Module._compile (internal/modules/cjs/loader.js:778:30)
-      at Module.replacementCompile (node_modules/append-transform/index.js:60:13)
-      at Module._extensions..js (internal/modules/cjs/loader.js:789:10)
-      at Object.<anonymous> (node_modules/append-transform/index.js:64:4)
-      at Module.load (internal/modules/cjs/loader.js:653:32)
-      at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
-      at Function.Module._load (internal/modules/cjs/loader.js:585:3)
-      at Module.require (internal/modules/cjs/loader.js:692:17)
-      at require (internal/modules/cjs/helpers.js:25:18)
-      at process._tickCallback (internal/process/next_tick.js:68:7)
-      at Function.Module.runMain (internal/modules/cjs/loader.js:834:11)
-      at startup (internal/bootstrap/node.js:283:19)
-      at bootstrapNodeJSCore (internal/bootstrap/node.js:623:3)
+  Database core methods
+    User handling
+      ✓ Fetching a user by email (41ms)
+      ✓ Creating a new user through model
+      ✓ Fetching a user by id
+    Event handling
+      ✓ Fetching all events
+
+  Database queries
+    User handling
+      ✓ Retrieves user by email
+    Event handling
+      ✓ Retrieves event by title
+
+  Utility methods
+    Checks recommendation algorithm retrieval
+      ✓ User is a Backend Developer
+      ✓ User is a Javascript Developer
+    Checks data formatting for price
+      ✓ Price conversion to include From
+      ✓ Price conversion to include Not available
+      ✓ Price conversion to include Free
+      ✓ Price conversion to discard invalid strings
+      ✓ Price conversion to discard invalid data types
 
 
+  19 passing (223ms)
 
 
 =============================== Coverage summary ===============================
-Statements   : 23.88% ( 138/578 )
-Branches     : 0% ( 0/130 )
-Functions    : 11.11% ( 14/126 )
-Lines        : 24.34% ( 138/567 )
+Statements   : 50.17% ( 290/578 )
+Branches     : 20% ( 26/130 )
+Functions    : 53.17% ( 67/126 )
+Lines        : 50.26% ( 285/567 )
 ================================================================================

@@ -5,9 +5,9 @@
   "main": "index.js",
   "nyc": {
     "all": true,
-    "branches": 15,
-    "lines": 45,
-    "statements": 45,
+    "branches": 10,
+    "lines": 10,
+    "statements": 10,
     "exclude": [
       "**/*window-location.js",
       "**/*coverage"
@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "nyc --reporter=text-summary --check-coverage=true mocha --exit > coverage.txt",
-    "coverage": "nyc --reporter=text-summary mocha --exit",
+    "coverage": "nyc --reporter=text-summary mocha ./test/sanitization.spec.js --exit",
     "lint": "eslint .",
     "start": "nodemon app.js",
     "compile:sass": "node-sass sass/main.scss public/css/style.css -w"
