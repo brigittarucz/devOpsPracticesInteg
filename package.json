@@ -13,13 +13,16 @@
     ]
   },
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text --check-coverage=true mocha",
+    "test": "nyc --reporter=text-summary --check-coverage=true mocha && nyc report --include ./coverage/coverage-final.json text > coverage.txt",
+    "coverage": "nyc npm run test",
     "start": "nodemon app.js",
     "compile:sass": "node-sass sass/main.scss public/css/style.css -w"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "chai-http": "^4.3.0",
+    "coveralls": "^3.1.0",
     "cssnano": "^4.1.10",
     "eslint-plugin-ejs": "0.0.2",
     "mocha": "^8.4.0",
