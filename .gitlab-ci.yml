@@ -21,6 +21,7 @@ testing:
   stage: test
   script:
     - npm test
+    - cat coverage.txt
 
 pages:
   stage: deploy

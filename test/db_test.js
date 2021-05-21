@@ -8,4 +8,12 @@ const pool = mysql.createConnection({
     port: 3308
 });
 
+pool.connect(function(err) {
+    if(err !== null) {
+        if(err.errno === 'ENOTFOUND') {
+            pool.host = 'localhost';
+        }
+    }
+})
+
 module.exports = pool.promise();

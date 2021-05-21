@@ -1,4 +1,4 @@
-Running on port 3000
+Running on port 5000
 
 
   Business logic
@@ -6,7 +6,7 @@ Running on port 3000
       ✓ GET /dashboard
       ✓ GET /profile
     Checks page flow with authentication
-      ✓ GET /dashboard (65ms)
+      ✓ GET /dashboard (64ms)
       ✓ GET /profile
     Checks 404 with incorrect route
       ✓ GET /incorrect
@@ -15,134 +15,16 @@ Running on port 3000
 
   Database core methods
     User handling
-      1) Fetching a user by email
-{ Error: getaddrinfo ENOTFOUND mariadb_dummy mariadb_dummy:3308
-    at PromiseConnection.execute (/home/brigitta/docker101/exam/examApp/node_modules/mysql2/promise.js:110:22)
-    at Function.fetchUser (/home/brigitta/docker101/exam/examApp/models/user.js:3:341)
-    at Context.done (/home/brigitta/docker101/exam/examApp/test/integration.spec.js:2:654)
-    at callFnAsync (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runnable.js:394:21)
-    at Test.Runnable.run (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runnable.js:338:7)
-    at Runner.runTest (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:677:10)
-    at /home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:801:12
-    at next (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:594:14)
-    at /home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:604:7
-    at next (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:486:14)
-    at Immediate.<anonymous> (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:572:5)
-    at runCallback (timers.js:705:18)
-    at tryOnImmediate (timers.js:676:5)
-    at processImmediate (timers.js:658:5)
-  message: 'getaddrinfo ENOTFOUND mariadb_dummy mariadb_dummy:3308',
-  code: 'ENOTFOUND',
-  errno: 'ENOTFOUND',
-  sqlState: undefined,
-  sqlMessage: undefined }
-{ Error: getaddrinfo ENOTFOUND mariadb_dummy mariadb_dummy:3308
-    at PromiseConnection.execute (/home/brigitta/docker101/exam/examApp/node_modules/mysql2/promise.js:110:22)
-    at User.createUser (/home/brigitta/docker101/exam/examApp/models/user.js:3:483)
-    at Context.done (/home/brigitta/docker101/exam/examApp/test/integration.spec.js:2:1216)
-    at callFnAsync (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runnable.js:394:21)
-    at Test.Runnable.run (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runnable.js:338:7)
-    at Runner.runTest (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:677:10)
-    at /home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:801:12
-    at next (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:594:14)
-    at /home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:604:7
-    at next (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:486:14)
-    at Immediate.<anonymous> (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:572:5)
-    at runCallback (timers.js:705:18)
-    at tryOnImmediate (timers.js:676:5)
-    at processImmediate (timers.js:658:5)
-  message: 'getaddrinfo ENOTFOUND mariadb_dummy mariadb_dummy:3308',
-  code: 'ENOTFOUND',
-  errno: 'ENOTFOUND',
-  sqlState: undefined,
-  sqlMessage: undefined }
-      ✓ Creating a new user through model (1735ms)
-User not created:  { Error: Can't add new command when connection is in closed state
-    at PromiseConnection.execute (/home/brigitta/docker101/exam/examApp/node_modules/mysql2/promise.js:110:22)
-    at Function.fetchUserById (/home/brigitta/docker101/exam/examApp/models/user.js:3:800)
-    at Context.done (/home/brigitta/docker101/exam/examApp/test/integration.spec.js:2:1645)
-    at callFnAsync (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runnable.js:394:21)
-    at Test.Runnable.run (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runnable.js:338:7)
-    at Runner.runTest (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:677:10)
-    at /home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:801:12
-    at next (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:594:14)
-    at /home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:604:7
-    at next (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:486:14)
-    at Immediate.<anonymous> (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:572:5)
-    at runCallback (timers.js:705:18)
-    at tryOnImmediate (timers.js:676:5)
-    at processImmediate (timers.js:658:5)
-  message: 'Can\'t add new command when connection is in closed state',
-  code: undefined,
-  errno: undefined,
-  sqlState: undefined,
-  sqlMessage: undefined }
-      2) Fetching a user by id
+      ✓ Fetching a user by email
+      ✓ Creating a new user through model
+      ✓ Fetching a user by id
     Event handling
-Events not retrieved:  { Error: Can't add new command when connection is in closed state
-    at PromiseConnection.execute (/home/brigitta/docker101/exam/examApp/node_modules/mysql2/promise.js:110:22)
-    at Function.fetchEvents (/home/brigitta/docker101/exam/examApp/models/event.js:2:871)
-    at Context.done (/home/brigitta/docker101/exam/examApp/test/integration.spec.js:2:2163)
-    at callFnAsync (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runnable.js:394:21)
-    at Test.Runnable.run (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runnable.js:338:7)
-    at Runner.runTest (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:677:10)
-    at /home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:801:12
-    at next (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:594:14)
-    at /home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:604:7
-    at next (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:486:14)
-    at Immediate.<anonymous> (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:572:5)
-    at runCallback (timers.js:705:18)
-    at tryOnImmediate (timers.js:676:5)
-    at processImmediate (timers.js:658:5)
-  message: 'Can\'t add new command when connection is in closed state',
-  code: undefined,
-  errno: undefined,
-  sqlState: undefined,
-  sqlMessage: undefined }
       ✓ Fetching all events
 
   Database queries
     User handling
-{ Error: Can't add new command when connection is in closed state
-    at PromiseConnection.execute (/home/brigitta/docker101/exam/examApp/node_modules/mysql2/promise.js:110:22)
-    at Context.done (/home/brigitta/docker101/exam/examApp/test/integration.spec.js:2:2813)
-    at callFnAsync (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runnable.js:394:21)
-    at Test.Runnable.run (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runnable.js:338:7)
-    at Runner.runTest (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:677:10)
-    at /home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:801:12
-    at next (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:594:14)
-    at /home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:604:7
-    at next (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:486:14)
-    at Immediate.<anonymous> (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:572:5)
-    at runCallback (timers.js:705:18)
-    at tryOnImmediate (timers.js:676:5)
-    at processImmediate (timers.js:658:5)
-  message: 'Can\'t add new command when connection is in closed state',
-  code: undefined,
-  errno: undefined,
-  sqlState: undefined,
-  sqlMessage: undefined }
       ✓ Retrieves user by email
     Event handling
-{ Error: Can't add new command when connection is in closed state
-    at PromiseConnection.execute (/home/brigitta/docker101/exam/examApp/node_modules/mysql2/promise.js:110:22)
-    at Context.done (/home/brigitta/docker101/exam/examApp/test/integration.spec.js:2:3410)
-    at callFnAsync (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runnable.js:394:21)
-    at Test.Runnable.run (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runnable.js:338:7)
-    at Runner.runTest (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:677:10)
-    at /home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:801:12
-    at next (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:594:14)
-    at /home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:604:7
-    at next (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:486:14)
-    at Immediate.<anonymous> (/home/brigitta/docker101/exam/examApp/node_modules/mocha/lib/runner.js:572:5)
-    at runCallback (timers.js:705:18)
-    at tryOnImmediate (timers.js:676:5)
-    at processImmediate (timers.js:658:5)
-  message: 'Can\'t add new command when connection is in closed state',
-  code: undefined,
-  errno: undefined,
-  sqlState: undefined,
-  sqlMessage: undefined }
       ✓ Retrieves event by title
 
   Utility methods
@@ -157,27 +39,12 @@ Events not retrieved:  { Error: Can't add new command when connection is in clos
       ✓ Price conversion to discard invalid data types
 
 
-  17 passing (6s)
-  2 failing
-
-  1) Database core methods
-       User handling
-         Fetching a user by email:
-     Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (/home/brigitta/docker101/exam/examApp/test/integration.spec.js)
-  
-
-  2) Database core methods
-       User handling
-         Fetching a user by id:
-     Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (/home/brigitta/docker101/exam/examApp/test/integration.spec.js)
-  
-
-
+  19 passing (222ms)
 
 
 =============================== Coverage summary ===============================
-Statements   : 49.48% ( 284/574 )
-Branches     : 21.43% ( 27/126 )
-Functions    : 53.6% ( 67/125 )
-Lines        : 49.56% ( 279/563 )
+Statements   : 50.35% ( 291/578 )
+Branches     : 20.77% ( 27/130 )
+Functions    : 53.97% ( 68/126 )
+Lines        : 50.44% ( 286/567 )
 ================================================================================

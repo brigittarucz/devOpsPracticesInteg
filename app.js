@@ -21,8 +21,8 @@ const fs = require('fs');
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'accesss.log'), { flags: 'a' })
 app.use(morgan('combined', { stream: accessLogStream }));
 
-console.log("Running on port 3000");
-app.listen(3000);
+console.log("Running on port 5000");
+app.listen(5000);
 
 // TEST THE DB
 // const db = require('./util/database'); // CONNECTION POOL
