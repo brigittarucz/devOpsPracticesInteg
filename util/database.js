@@ -2,8 +2,7 @@ const mysql = require('mysql2');
 
 // REDUCE TIME SPENT CONNECTING TO SQL BY 
 // REUSING PREVIOUS CONNECTIONS FROM THE POOL
-var os = require("os");
-console.log(os.hostname());
+
 const pool = mysql.createConnection({
     host: 'mariadb',    // Docker
     // host: 'localhost',  // Testing
@@ -13,8 +12,16 @@ const pool = mysql.createConnection({
     port: 3306
 });
 
+
 pool.connect(function(err) {
-    if(!err) {
-        module.exports = pool.promise();
-    } 
+    if(err !== null) {
+        if(err.errno === 'ENOTFOUND') {
+            pool.host = 'localhost';
+        }
+    }
 })
+
+module.exports = pool.promise();
+
+
+// module.exports = pool.promise();

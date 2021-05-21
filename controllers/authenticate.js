@@ -9,6 +9,7 @@ const { LocalStorage } = require('node-localstorage');
 const { fetchUser } = require('../models/user');
 localStorage = new LocalStorage('./local_storage');
 
+
 exports.getAuth = (req, res, next) => {
     return res.render('auth/authenticate', {
         pageTitle: 'Authentication',
@@ -24,6 +25,7 @@ exports.logoutAuth = (req, res, next) => {
 
 exports.postAuth = (req, res, next) => {
     console.log(req);
+    
     if(req.params.action == 'login') {
         User.fetchUser(req.body.email, db).then(result => {
                 var oUser = result[0];
