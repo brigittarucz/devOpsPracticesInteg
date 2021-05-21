@@ -8,7 +8,7 @@ RUN apk update && \
 RUN npm install -g npm@7.14.0
 # CMD ["sh", "./commands.sh"]
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+CMD tail -f /dev/null
 # RUN kill $(lsof -t -i:3000)
 # RUN npm test
 # RUN npm install -g eslint

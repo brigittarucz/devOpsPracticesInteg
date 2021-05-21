@@ -22,7 +22,7 @@ testing:
   script:
     - npm test
     - cat coverage.txt
-
+#test
 pages:
   stage: deploy
   script:
