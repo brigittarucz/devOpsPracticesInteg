@@ -1,29 +1,31 @@
-var authOverlay = document.querySelector(".main__auth-overlay");
-var signupContainer = document.querySelector(".main__auth-signup_container");
-var loginContainer = document.querySelector(".main__auth-login_container");
+var authOverlay = document.querySelector('.main__auth-overlay');
+var signupContainer = document.querySelector('.main__auth-signup_container');
+var loginContainer = document.querySelector('.main__auth-login_container');
 
-var signupContent = document.querySelector(".main__auth-overlay_article-signup");
-var loginContent = document.querySelector(".main__auth-overlay_article-login");
+var signupContent = document.querySelector('.main__auth-overlay_article-signup');
+var loginContent = document.querySelector('.main__auth-overlay_article-login');
 
-// BY DEFAULT: 
-authOverlay.classList.remove("main__auth-overlay_reverse");
-signupContainer.style.display = "none";
-loginContainer.style.display = "block";
-signupContent.classList.remove("inactive");
-loginContent.classList.add("inactive");
+// BY DEFAULT:
+authOverlay.classList.remove('main__auth-overlay_reverse');
+signupContainer.style.display = 'none';
+loginContainer.style.display = 'block';
+signupContent.classList.remove('inactive');
+loginContent.classList.add('inactive');
 
+// eslint-disable-next-line no-unused-vars
 function animateLogin() {
-    authOverlay.classList.remove("main__auth-overlay_reverse");
-    signupContainer.style.display = "none";
-    loginContainer.style.display = "block";
-    signupContent.classList.remove("inactive");
-    loginContent.classList.add("inactive");
+  authOverlay.classList.remove('main__auth-overlay_reverse');
+  signupContainer.style.display = 'none';
+  loginContainer.style.display = 'block';
+  signupContent.classList.remove('inactive');
+  loginContent.classList.add('inactive');
 }
 
+// eslint-disable-next-line no-unused-vars
 function animateSignup() {
-    authOverlay.classList.add("main__auth-overlay_reverse")
-    loginContainer.style.display = "none";
-    signupContainer.style.display = "block";
-    loginContent.classList.remove("inactive");
-    signupContent.classList.add("inactive");
+  authOverlay.classList.add('main__auth-overlay_reverse');
+  loginContainer.style.display = 'none';
+  signupContainer.style.display = 'block';
+  loginContent.classList.remove('inactive');
+  signupContent.classList.add('inactive');
 }

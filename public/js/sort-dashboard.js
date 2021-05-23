@@ -1,5 +1,6 @@
 var relevanceAscending = 1;
 
+// eslint-disable-next-line no-unused-vars
 function sortByRelevance() {
   var aEvents = document.querySelector('.main__home-events_container');
 
@@ -30,6 +31,7 @@ function getRelevance(queryElement) {
 
 var dateAscending = 1;
 
+// eslint-disable-next-line no-unused-vars
 function sortByDate() {
   var aEvents = document.querySelector('.main__home-events_container');
 
