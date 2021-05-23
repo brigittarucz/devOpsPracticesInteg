@@ -23,9 +23,9 @@ exports.getEvents = async (req,res) => {
             var aEvents = resp[0];
             // TODO: Exclude events added to the user's list
             
-            User.fetchUserById(localStorage.getItem('sessionId'), db).then( user => {
+            User.fetchUserById(localStorage.getItem('sessionId'), db).then( aUser => {
                 
-                var user = user[0][0];
+                var user = aUser[0][0];
 
                 // user.proffesion = 'Javascript Developer';
 
