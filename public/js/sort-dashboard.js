@@ -5,15 +5,13 @@ function sortByRelevance() {
 
   if (relevanceAscending) {
     // Ascending
-
     var newOrder = Array.from(aEvents.children).sort(function (a, b) {
       return getRelevance(b) - getRelevance(a);
     });
     event.target.textContent = 'Relevance: Lowest to Highest';
   } else {
     // Descending
-
-    var newOrder = Array.from(aEvents.children).sort(function (a, b) {
+    newOrder = Array.from(aEvents.children).sort(function (a, b) {
       return getRelevance(a) - getRelevance(b);
     });
     event.target.textContent = 'Relevance: Highest to Lowest';
@@ -37,15 +35,13 @@ function sortByDate() {
 
   if (dateAscending) {
     // Ascending
-
     var newOrder = Array.from(aEvents.children).sort(function (a, b) {
       return getRelevance(b) - getRelevance(a);
     });
     event.target.textContent = 'Date: Latest to Closest';
   } else {
     // Descending
-
-    var newOrder = Array.from(aEvents.children).sort(function (a, b) {
+    newOrder = Array.from(aEvents.children).sort(function (a, b) {
       return getRelevance(a) - getRelevance(b);
     });
     event.target.textContent = 'Date: Closest to Latest';
