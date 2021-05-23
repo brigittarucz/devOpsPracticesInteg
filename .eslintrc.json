@@ -10,5 +10,8 @@
     "sourceType": "module"
   },
   "rules": {},
+  "globals": {
+    "localStorage": "writable"
+  },
   "plugins": ["ejs"]
 }
