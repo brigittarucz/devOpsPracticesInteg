@@ -1,6 +1,3 @@
-const express = require('express');
-const fetch = require('node-fetch');
-
 const Event = require('../models/event');
 const User = require('../models/user');
 
@@ -10,7 +7,7 @@ localStorage = new LocalStorage('./local_storage');
 var utilities = require('../public/js/functions');
 const db = require('../util/database');
 
-exports.getEvents = async (req,res,next) => {
+exports.getEvents = async (req,res) => {
 
     if(localStorage.getItem('sessionId') == null) {
         res.setHeader('path', '/authenticate')
@@ -87,7 +84,7 @@ exports.getEvents = async (req,res,next) => {
 }
 
 
-exports.postAddEvent = (req, res, next) => {
+exports.postAddEvent = (req, res) => {
 
     console.log(localStorage.getItem('sessionId'))
     // if(localStorage.getItem('sessionId') == null) {
