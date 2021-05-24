@@ -1,0 +1,50 @@
+Running on port 5000
+
+
+  Business logic
+    Checks page flow without authentication
+      ✓ GET /dashboard
+      ✓ GET /profile
+    Checks page flow with authentication
+      ✓ GET /dashboard (38ms)
+      ✓ GET /profile
+    Checks 404 with incorrect route
+      ✓ GET /incorrect
+    Checks authentication through signup
+      ✓ POST /authenticate
+
+  Database core methods
+    User handling
+      ✓ Fetching a user by email (41ms)
+      ✓ Creating a new user through model
+      ✓ Fetching a user by id
+    Event handling
+      ✓ Fetching all events
+
+  Database queries
+    User handling
+      ✓ Retrieves user by email
+    Event handling
+      ✓ Retrieves event by title
+
+  Utility methods
+    Checks recommendation algorithm retrieval
+      ✓ User is a Backend Developer
+      ✓ User is a Javascript Developer
+    Checks data formatting for price
+      ✓ Price conversion to include From
+      ✓ Price conversion to include Not available
+      ✓ Price conversion to include Free
+      ✓ Price conversion to discard invalid strings
+      ✓ Price conversion to discard invalid data types
+
+
+  19 passing (223ms)
+
+
+=============================== Coverage summary ===============================
+Statements   : 50.17% ( 290/578 )
+Branches     : 20% ( 26/130 )
+Functions    : 53.17% ( 67/126 )
+Lines        : 50.26% ( 285/567 )
+================================================================================

@@ -3,31 +3,50 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "nyc": {
+    "all": true,
+    "branches": 10,
+    "lines": 10,
+    "statements": 10,
+    "exclude": [
+      "**/*window-location.js",
+      "**/*coverage"
+    ]
+  },
   "scripts": {
-    "test": "mocha",
+    "test": "nyc --reporter=text-summary --check-coverage=true mocha --exit > coverage.txt",
+    "coverage": "nyc --reporter=text-summary mocha ./test/sanitization.spec.js --exit",
+    "lint": "eslint .",
     "start": "nodemon app.js",
     "compile:sass": "node-sass sass/main.scss public/css/style.css -w"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "chai-http": "^4.3.0",
+    "coveralls": "^3.1.0",
     "cssnano": "^4.1.10",
-    "mocha": "^8.2.0",
-    "node-sass": "^4.14.1",
+    "eslint": "^7.27.0",
+    "eslint-plugin-ejs": "0.0.2",
+    "mocha": "^8.4.0",
+    "node-sass": "^5.0",
     "nodemon": "^2.0.6",
     "sass": "^1.27.0"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "chai": "^4.3.4",
     "compression": "^1.7.4",
     "date-fns": "^2.16.1",
-    "ejs": "^3.1.5",
+    "ejs": "^3.1.6",
     "email-validator": "^2.0.4",
     "express": "^4.17.1",
+    "jsdoc": "^3.6.7",
     "morgan": "^1.10.0",
     "mysql2": "^2.2.5",
     "node-fetch": "^2.6.1",
     "node-localstorage": "^2.1.6",
+    "nyc": "^15.1.0",
     "uuid": "^8.3.1"
   }
 }

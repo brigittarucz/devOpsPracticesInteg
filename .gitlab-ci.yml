@@ -1,0 +1,36 @@
+image: registry.gitlab.com/brigittarucz/examapp
+
+stages:
+  - build
+  # - test
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+env_setup:
+  stage: build
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+
+# testing:
+  # stage: test
+  # script:
+    # - eslint .
+    # - npm test
+
+pages:
+  stage: deploy
+  script:
+    - mkdir .public
+    - cp -r pages .public
+    - mv .public public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master

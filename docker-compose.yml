@@ -3,6 +3,21 @@ version: '3'
 
 services:
 
+  web:
+    build: ./
+    image: brigdocker/tech_app
+
+  mariadb_dummy:
+    container_name: mariadb_dummy
+    build: ./integration/
+    ports: 
+      - "3308:3308"
+    depends_on:
+      - nodeapp
+      - mariadb
+    networks:
+      - dbnet
+
   mariadb:
     container_name: mariadb
     image: mariadb:latest
@@ -12,8 +27,8 @@ services:
     ports:
         - "3306:3306"
     env_file:
-        - environment/mysql.env
-    command: mysqld --init-file="/tmp/database/techevents_users_users.sql"
+        - environment/mariadb.env
+    command: mysqld --init-file="/tmp/database/techevents_users.sql"
     networks:
         - dbnet
 
@@ -21,7 +36,7 @@ services:
     build: .
     restart: always
     expose:
-        - "3000"
+        - "5000"
     deploy:
         replicas: 3
         restart_policy:

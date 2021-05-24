@@ -3,7 +3,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const routes = require('./routes/routes');
-const db = require('./util/database'); // CONNECTION POOL
 const compression = require('compression');
 const morgan = require('morgan');
 
@@ -22,12 +21,15 @@ const fs = require('fs');
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'accesss.log'), { flags: 'a' })
 app.use(morgan('combined', { stream: accessLogStream }));
 
+console.log("Running on port 5000");
+app.listen(5000);
+
 // TEST THE DB
+// const db = require('./util/database'); // CONNECTION POOL
 // db.execute('SELECT * FROM users WHERE email = ?', ['brigitt1a121@yahoo.com']).then(result =>{
 //     console.log(result[0]);
 // }).catch(err => {
 //     console.log(err);
 // });
-console.log("Running on port 3000");
-app.listen(3000);
 
+module.exports = app;
