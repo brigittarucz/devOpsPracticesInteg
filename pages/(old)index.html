@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+    <main class="main__auth">
+
+        <!-- main__auth-overlay_reverse -->
+        <section class="main__auth-overlay">
+            <article class="main__auth-overlay_article-signup">
+                <h3 class="header-tertiary">Not Signed Up Yet?</h3>
+                <p class="paragraph-primary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quos asperiores cupiditate quam ipsam odit!</p>
+                <a href="./main.html" onclick="return false;"><button class="btn btn__transparent" onclick="animateSignup(); return false;">SIGN UP</button></a>
+            </article>
+
+            <article class="main__auth-overlay_article-login">
+                <h3 class="header-tertiary">Already have an account?</h3>
+                <p class="paragraph-primary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quos asperiores cupiditate quam ipsam odit!</p>
+                <a href="./main.html" onclick="return false;"><button class="btn btn__transparent" onclick="animateLogin(); return false;">LOG IN</button></a>
+            </article>
+        </section>
+        
+        <section class="main__auth-signup">
+            <div class="main__auth-signup_container">
+                <h1 class="main__auth-signup_header header-primary">Tech Events Around The World</h1>
+                <form class="main__auth-signup_form">
+                    <div class="auth__form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" name="email">
+                    </div>
+                    <div class="auth__form-select">
+                        <label for="proffesion">Profession</label>
+                        <select name="proffesion">
+                            <option value="frontend">Frontend</option>
+                            <option value="backend">Backend</option>
+                        </select>
+                        </div>
+                        <div class="auth__form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password">
+                        </div>
+                        <div class="auth__form-group">
+                            <label for="repeatpassword">Repeat Password</label>
+                            <input type="password" name="repeatpassword">
+                        </div>
+                        <div class="auth__form-group">
+                            <label for="experience">Experience</label>
+                            <input type="text" name="experience">
+                        </div>
+                        <div class="auth__form-group">
+                            <label for="interests">Interests</label>
+                            <input type="text" name="interests">
+                        </div>
+                        <div class="auth__form-checkbox">
+                            <input class="main__auth-signup_form-accept" name="accept" type="checkbox">
+                            <label for="accept">I accept my data being processed</label>
+                        </div>
+                        <button class="btn btn__dark" type="submit">SIGN UP</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="main__auth-login">
+            <div class="main__auth-login_container">
+                <h1 class="main__auth-login_header header-primary">Tech Events Around The World</h1>
+                <form class="main__auth-login_form">
+                    <div class="auth__form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" value="at@email.com" name="email">
+                    </div>
+                    <div class="auth__form-group">
+                        <label for="password">Password</label>
+                        <input type="password" value="password" name="password">
+                    </div>
+                    <div class="auth__form-checkbox">
+                        <input class="main__auth-login_form-remember" name="remember" type="checkbox">
+                        <label for="remember">Remember Me</label>
+                        <a href="/">Forgot password?</a>
+                    </div>
+                    <button class="btn btn__dark"type="submit">LOG IN</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+    <script src="public/js/animation-auth.js"></script>
+</body>
+</html>

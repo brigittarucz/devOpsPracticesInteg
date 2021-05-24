@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+/* ************* Global ************* */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; 
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  box-sizing: border-box;
+  position: relative;
+  scroll-behavior: smooth;
+  overflow: hidden; 
+  font-family: 'Poppins', sans-serif; 
+  /* background-color: 'rgba(3, 12, 11, 0.48)'; */
+}
+
+a {
+    color: #696969;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #696969;
+    text-decoration: underline;
+}
+
+img {
+    max-width: 90%;   
+    /* padding: 20px; */
+    margin: 3%;
+}
+
+/* https://gist.github.com/jirutka/32049196ab75547b7f47 */
+ol {
+    list-style-type: none;
+    counter-reset: item;
+    margin: 0;
+    padding: 0;
+}
+
+ol > li {
+    display: table;
+    counter-increment: item;
+    margin-bottom: 0.6em;
+}
+
+ol > li:before {
+    content: counters(item, ".") ". ";
+    display: table-cell;
+    padding-right: 0.6em;    
+}
+
+li ol > li {
+    margin: 0;
+}
+
+li ol > li:before {
+    content: counters(item, ".") " ";
+}
+
+ul {
+    width: 90%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+ul > li {
+    margin-left: 10%;
+}
+
+
+/* ************* Class ************* */
+.contents {
+    margin-top: 5%;
+    margin-bottom: 10%;
+    margin-left: 18%;
+    margin-right: 18%;
+}
+
+.header {
+    text-align: center; 
+    font-weight: 800;
+    padding: 50px;
+    padding-bottom: 20px;
+    font-size: 28px;
+}
+
+.names {
+    font-weight: 400; 
+    font-size: 20px;
+    text-align: center; 
+    line-height: 1.5;
+}
+
+.toc {
+    list-style-position: inside;
+    list-style-type: disc;
+    font-weight: 300;
+    font-size: 17px;
+    /* color: #696969; */
+    line-height: 1.5;
+    margin-left: 18%;
+    margin-right: 18%;
+}
+
+.subheader1 {
+    font-weight: 500; 
+    font-size: 28px;
+    margin-top: 80px;
+    margin-bottom: 10px;
+}
+
+.subheader2 {
+    font-weight: 400; 
+    font-size: 18px;
+    text-decoration: underline;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.text {
+    /* font-weight: 400; */
+    font-size: 17px;
+    color: #696969;
+    line-height: 1.6;
+}
+
+.text div{
+    margin-bottom: 18px;
+    font-weight: 300;
+}
