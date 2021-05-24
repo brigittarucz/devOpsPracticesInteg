@@ -1,6 +1,5 @@
 # default:
-image:
-  registry.gitlab.com/brigittarucz/examapp
+image: registry.gitlab.com/brigittarucz/examapp
   # services:
   #   - name: mariadb:latest
   #     alias: mariadb
