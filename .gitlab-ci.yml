@@ -1,13 +1,28 @@
-image: registry.gitlab.com/brigittarucz/examapp
-
-stages:
-  - build
-  # - test
-  - deploy
+# default:
+image:
+  registry.gitlab.com/brigittarucz/examapp
+  # services:
+  #   - name: mariadb:latest
+  #     alias: mariadb
 
 cache:
   paths:
     - node_modules/
+
+# variables:
+#   MYSQL_USER: root
+#   MYSQL_ROOT_PASSWORD: password
+#   MYSQL_DATABASE: techevents_users
+
+# connect:
+#   image: mysql
+#   script:
+#   - echo "SELECT 'OK';" | mysql --user=root --password=password --host=mariadb techevents_users
+
+stages:
+  - build
+  - test
+  - deploy
 
 env_setup:
   stage: build
@@ -17,22 +32,20 @@ env_setup:
     paths:
       - node_modules/
 
-# testing:
-  # stage: test
-  # script:
-    # - eslint .
-    # - npm test
+testing:
+  stage: test
+  script:
+    - npm run lint
+    - npm run coverage
 
 pages:
   stage: deploy
   script:
     - mkdir .public
-    - cp -r pages .public
+    - cp -r * .public
     - mv .public public
   artifacts:
     paths:
       - public
   only:
-    # - master
-    # - app_integration
-    - app_cicd
+    - master
