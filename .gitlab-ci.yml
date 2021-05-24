@@ -48,5 +48,4 @@ pages:
     paths:
       - public
   only:
-    # - master
-    - app_integration
+    - master
