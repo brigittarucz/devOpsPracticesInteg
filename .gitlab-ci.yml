@@ -1,5 +1,6 @@
 # default:
-image: registry.gitlab.com/brigittarucz/examapp
+image:
+  registry.gitlab.com/brigittarucz/examapp
   # services:
   #   - name: mariadb:latest
   #     alias: mariadb
@@ -34,6 +35,7 @@ env_setup:
 testing:
   stage: test
   script:
+    - npm run lint
     - npm run coverage
 
 pages:
