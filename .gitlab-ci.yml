@@ -2,7 +2,6 @@ image: registry.gitlab.com/brigittarucz/examapp
 
 stages:
   - build
-  # - test
   - deploy
 
 cache:
@@ -16,12 +15,6 @@ env_setup:
   artifacts:
     paths:
       - node_modules/
-
-# testing:
-  # stage: test
-  # script:
-    # - eslint .
-    # - npm test
 
 pages:
   stage: deploy
