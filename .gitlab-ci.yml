@@ -54,6 +54,7 @@ testing:
 
 pages:
   image: ruby:latest
+  stage: deploy
   script:
   - gem install jekyll
   # - bundle exec jekyll build -d public
