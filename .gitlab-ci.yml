@@ -49,15 +49,15 @@ testing:
 #   only:
 #     - master
 
-
-variables:
-  JEKYLL_ENV: production
+# variables:
+#   JEKYLL_ENV: production
 
 pages:
-  # image: ruby:latest
+  image: ruby:latest
   script:
-  - bundle install
-  - bundle exec jekyll build -d public
+  - gem install jekyll
+  # - bundle exec jekyll build -d public
+  - jekyll build -d public/
   artifacts:
     paths:
     - public
