@@ -59,14 +59,14 @@ services:
     networks:
         - webnet
 
-  # jekyll-bundler:
-  #   # container_name: jekyll
-  #   build: ./pages/
-  #   volumes:
-  #     - ./:/usr/src/app
-  #   ports:
-  #     - 127.0.0.1:4000:4000
-  #   command: bundle exec jekyll serve --host 0.0.0.0
+  jekyll-bundler:
+    # container_name: jekyll
+    build: ./pages/
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 127.0.0.1:4000:4000
+    command: bundle exec jekyll serve --host 0.0.0.0
       
 
 volumes:

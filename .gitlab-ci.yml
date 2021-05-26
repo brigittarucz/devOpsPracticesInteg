@@ -54,14 +54,14 @@ testing:
 
 pages:
   stage: deploy
-  image: ruby:latest
+  # image: ruby:latest
   script:
-  - gem install rake && bundle install
-  - gem install jekyll
-  # - bundle exec jekyll build -d public
-  - jekyll build -d public/
+    # - gem install rake && bundle install
+    # - gem install jekyll
+    # - jekyll build -d public/
+    - bundle exec jekyll build -d public
   artifacts:
     paths:
-    - public
+      - public
   only:
-  - app_pages
+    - app_pages
