@@ -3,7 +3,6 @@
  * @module controller/authenticate
  */
 
-const express = require('express');
 const User = require('../models/user');
 const uuid = require('uuid');
 const emailValidator = require('email-validator');
@@ -21,7 +20,7 @@ localStorage = new LocalStorage('./local_storage');
  * @param {Object} next - HTTP Next object.
  * @return {Object} The HTTP Response object.
  */
-exports.getAuth = (req, res, next) => {
+exports.getAuth = (req, res) => {
     return res.render('auth/authenticate', {
         pageTitle: 'Authentication',
     })
@@ -34,7 +33,7 @@ exports.getAuth = (req, res, next) => {
  * @param {Object} next - HTTP Next object.
  * @return {Object} The HTTP Response object.
  */
-exports.logoutAuth = (req, res, next) => {
+exports.logoutAuth = (req, res) => {
     localStorage.setItem('sessionId', '');
     return res.render('auth/authenticate', {
         pageTitle: 'Authentication',
@@ -48,7 +47,7 @@ exports.logoutAuth = (req, res, next) => {
  * @param {Object} next - HTTP Next object.
  * @return {Object} The HTTP Response object.
  */
-exports.postAuth = (req, res, next) => {
+exports.postAuth = (req, res) => {
     console.log(req);
     if (req.params.action == 'login') {
         User.fetchUser(req.body.email, db).then(result => {
@@ -110,7 +109,7 @@ exports.postAuth = (req, res, next) => {
                 const uniqid = uuid.v4();
                 const user = new User(uniqid, req.body.email, req.body.password, req.body.proffesion, req.body.experience, req.body.interests, '');
 
-                user.createUser(db).then(result => {
+                user.createUser(db).then(() => {
                     localStorage.setItem('sessionId', user.id);
                     return res.redirect('/dashboard');
                 }).catch(error => {
