@@ -2,8 +2,8 @@ FROM ruby:2.7.2-alpine
 
 WORKDIR /usr/src/app
 
-COPY Gemfile /usr/src/app/Gemfile
-COPY Gemfile.lock /usr/src/app/Gemfile.lock
+COPY ../Gemfile /usr/src/app/Gemfile
+COPY ../Gemfile.lock /usr/src/app/Gemfile.lock
 
 RUN apk upgrade --update
 RUN apk add libatomic readline readline-dev libxml2 \
