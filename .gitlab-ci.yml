@@ -76,5 +76,5 @@ pages:
     paths:
       - public
   only:
-    - master
+    - app_pages
 
