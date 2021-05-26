@@ -53,9 +53,10 @@ testing:
 #   JEKYLL_ENV: production
 
 pages:
-  image: ruby:latest
   stage: deploy
+  image: ruby:latest
   script:
+  - gem install rake && bundle install
   - gem install jekyll
   # - bundle exec jekyll build -d public
   - jekyll build -d public/
