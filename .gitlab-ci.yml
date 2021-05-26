@@ -71,7 +71,8 @@ pages:
   image: registry.gitlab.com/kea-teachers/kea-development-environments-2021-1
   stage: deploy
   script:
-    - bundle exec jekyll build -d public/
+    - cd ./pages
+    - bundle exec jekyll build -d ../public/
   artifacts:
     paths:
       - public
