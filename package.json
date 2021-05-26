@@ -47,6 +47,7 @@
     "node-fetch": "^2.6.1",
     "node-localstorage": "^2.1.6",
     "nyc": "^15.1.0",
+    "jsdoc": "^3.6.7",
     "uuid": "^8.3.1"
   }
 }
