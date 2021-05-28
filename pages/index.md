@@ -8,9 +8,13 @@ Final Project
 
 # Development Environment Final Project Report
 **Instructors**: Henrik Strøm, Steve Albury
+
 **Group**: Brigitta-Roberta Rucz, Michell Aagaard Dranig, Hyun Ji Lee
+
 **GitLab Repository Link**: https://gitlab.com/brigittarucz/examApp 
+
 **GitLab Pages Link**: https://brigittarucz.gitlab.io/examApp
+
 **Date**: June 2, 2021
 
 
@@ -156,10 +160,6 @@ ESLint is one of several lint tools available for JavaScript. ESLint is a relati
 
 As a rule, ESlint ensures that global variables are read-only, meaning that you should not change that variable. This rule is called no-global-assign. We do, however, change the localStorage to save the user ID, which, of course, throws errors. To fix this, we changed the .eslintrc.json file to state that the global variable localStorage should also be a writable: 
 
-<!-- >   "globals": {
->       "localStorage": "writable"
->   }, -->
-
 ```json
 "globals": {
     "localStorage": "writable"
@@ -168,8 +168,6 @@ As a rule, ESlint ensures that global variables are read-only, meaning that you 
  
 Another issue we came across was the four presumably unused functions in our JavaScript code. Even though the functions were being called in the files with the .html and .ejs extension, the linter was skipping those files and threw errors. This is because the linter was built to check only .js extensions. We tried several of the linter plugins, but these were only for recognizing HTML or Ejs syntaxes in other file types. To avoid omitting the whole folder public and not linting the JavaScript code in here, we added a line before each of the functions, telling the linter to disable the check for no-unused-vars on the next line: 
 
-<!-- >   // eslint-disable-next-line no-unused-vars -->
-<!-- >   function animateLogin() { -->
 ```javascript
 // eslint-disable-next-line no-unused-vars
 function animateLogin() {
@@ -190,9 +188,11 @@ When it comes to implementation, many paths initially seemed plausible. However,
 - Services in .gitlab-ci.yml file.
 
 
->   "test": "nyc --reporter=text-summary --check-coverage=true mocha --exit > coverage.txt",
->   "coverage": "nyc --reporter=text-summary mocha ./test/sanitization.spec.js --exit",
->   "lint": "eslint .",
+```json
+"test": "nyc --reporter=text-summary --check-coverage=true mocha --exit > coverage.txt",
+"coverage": "nyc --reporter=text-summary mocha ./test/sanitization.spec.js --exit",
+"lint": "eslint .",
+```
 
 Following these, we have restricted ourselves to running database-independent tests through npm run coverage. Locally, npm test outputs the tests with their failing or succeeding status, as well as code coverage measuring for statements, branches, functions, and lines in coverage.txt. The registry Dockerfile now simply contains the application with Node installed in an Alpine-based environment.
 
@@ -202,17 +202,6 @@ The .gitlab-ci.yml file uses the registry image and caches the node_modules/ so 
 ### <a name="softQApages"> GitLab Pages
 When using GitLab, developers can generate static websites using GitLab pages. There are multiple Static Site Generators (SSG) such as Jekyll, Hugo, and Hexo. Because our project is built with NodeJS, however, there are a few difficulties in generating a static website out of our project. Therefore, we decided to use the static GitLab pages as an introduction to our project report. In terms of SSG, we use Jekyll.
 
-<!-- >   pages:
->       image: registry.gitlab.com/kea-teachers/kea-development-environments-2021-1
->       stage: deploy
->       script:
->           - cd ./pages
->           - bundle exec Jekyll build -d ../public/
->       artifacts:
->           paths:
->               - public
->       only:
->           - master -->
 ```javascript
 pages:
     image: registry.gitlab.com/kea-teachers/kea-development-environments-2021-1
@@ -227,7 +216,6 @@ pages:
         - master
 ```
 
-
 To utilize the GitLab Pages, we included a stage named deploy in our .gitlab-ci.yml file. The YML file describes how a Runner should construct the static website. With the instructor’s permission, we are using the registry image built from the instructor’s course material repository. We are running two scripts in this stage: cd ./pages and bundle exec Jekyll build -d ../public/. When the pipeline is running, the Runner will move into a directory named .pages and execute the static site generator called Jekyll. With the build directive, we are using the -d flag to specify the build environment (directory). In the above example, we are building the static website at a directory called public on the parent level of the pages directory. Then, we provide a path to the public directory as a path to the artifacts of the website which will be uploaded to GitLab. Lastly, the only directive specifies that the job will be running only when the code is pushed into the master branch. This is to ensure that only when the development is completed and the modified code is deployed and pushed to the master branch, the website will also be updated accordingly. 
 
 Other than the codes in the .gitlab-ci.yml  file, we also created two new files: Gemfile and Gemfile.lock, following the examples from the instructor’s repository. The former file ensures consistent Jekyll and gem version – it describes the versions and the dependencies for the Ruby program. The latter records more detailed versions installed. [21]
@@ -240,20 +228,6 @@ User documentation is a manual primarily written for end-users and system admini
  
 For the developer documentation, we are using a markup language called JSDoc to generate it, being the go-to for a JavaScript-based project. [25] As the below example shows, the information involving scope, arguments, and description is placed inside the comment that starts with /** and ends with */. The details within those comments will be detected by the JSDoc parser, which will, in return, generate the documentation automatically. The tags, such as @constructor and @param describes more specific information for components such as functions and classes. Once the project is updated with comments, we run the jsdoc {file_name} command to auto-generate HTML documentation files. [26] 
 
-<!-- >   /** User class* @class This is a User class representing a user of the website.
->   */
->   module.exports = class User {
->   
->   /**
->    *Create a user.
->    *@param {string} id - The id of the user randomly generated by UUID npm library.
->    *@param {string} email - The email of the user.
->    *@param {string} password - The password of the user account.
->    *@param {string} profession - The profession of the user.
->    *@param {number} experience - The number of years of user's job experience.
->    *@param {string} interests - The subjects of user's interests.
->    *@param {string} events - The event(s) the user saved on their account.
->   */ -->
 ```javascript
 /** 
  * User class* @class This is a User class representing a user of the website.
