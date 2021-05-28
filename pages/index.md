@@ -2,34 +2,40 @@
 layout: default
 title: Development Environments Final Project
 ---
+<link rel="stylesheet" type="text/css" media="all" href="styles.css" />
+
 
 # Development Environment Final Project Report
-Instructors: Henrik Strøm, Steve Albury
-Group: Brigitta-Roberta Rucz, Michell Aagaard Dranig, Hyun Ji Lee
-GitLab Repository Link: https://gitlab.com/brigittarucz/examApp 
-GitLab Pages Link: https://brigittarucz.gitlab.io/examApp
-Date: June 2, 2021
+**Instructors**: Henrik Strøm, Steve Albury
+
+**Group**: Brigitta-Roberta Rucz, Michell Aagaard Dranig, Hyun Ji Lee
+
+**GitLab Repository Link**: https://gitlab.com/brigittarucz/examApp 
+
+**GitLab Pages Link**: https://brigittarucz.gitlab.io/examApp
+
+**Date**: June 2, 2021
 
 
 ## Table of Contents
-1. [link](#introduction) Introduction
-2. [link](#requirement) Requirement Specifications
-3. [link](#container) Containerization
-4. [link](#softQA)
-    1. [link](#softQAcode) Coding Standard
-    2. [link](#softQArelevancy) Relevancy of Tests
-    3. [link](#softQAtesting) Testing and Converage Measurements
-    4. [link](#softQAlinting) Linting
-    5. [link](#softQAcicd) CI/CD
-    6. [link](#softQApages) GitLab Pages
-    7. [link](#softQAdocument) Documentation
-5. [link](#version) Version Control System
-6. [link](#database) Database System
-7. [link](#os) Operating System Components
-8. [link](#biblio) Bibliography
-9. [link](#append) Appendices
-    1. [link](#append1) Appendix A: Requirement Specifications Screenshot
-    2. [link](#append2) Appendix B: Project Structure Diagram
+1. [Introduction](#introduction)
+2. [Requirement Specifications](#requirement) 
+3. [Containerization](#container) 
+4. [Software Quality Assurance](#softQA)
+    4. 1. [Coding Standard](#softQAcode) 
+    4. 2. [Relevancy of Tests](#softQArelevancy) 
+    4. 3. [Testing and Converage Measurements](#softQAtesting) 
+    4. 4. [Linting](#softQAlinting) 
+    4. 5. [CI/CD](#softQAcicd) 
+    4. 6. [GitLab Pages](#softQApages) 
+    4. 7. [Documentation](#softQAdocument) 
+5. [Version Control System](#version) 
+6. [Database System](#database) 
+7. [Operating System Components](#os) 
+8. [Bibliography](#biblio) 
+9. [Appendices](#append) 
+    1. [Appendix A: Requirement Specifications Screenshot](#append1) 
+    2. [Appendix B: Project Structure Diagram](#append2) 
 
 
 ## <a name="introduction"> Introduction
@@ -107,20 +113,20 @@ To prepare the playground for testing, we have installed Mocha and Chai as devel
 
 The execution involved considering the folder structure to ensure a clear separation of concerns, hence the test and integration folders hold our files for testing and a secondary MariaDB deployment through Docker. The package.json sets the configurations for InstanbulJS with code coverage for branches. Lines and statements are set to 10, the value which is currently not aligned with the best practice that employs as a reasonable goal 70-80% coverage as a minimum acceptance criterion. [17]
 
-    "nyc": {
-        "all": true,
-        "branches": 10,
-        "lines": 10,
-        "statements": 10,
-        "exclude": [
-        "**/*window-location.js",
-        "**/*coverage"
-        ]
-    },
+>   "nyc": {
+>       "all": true,
+>       "branches": 10,
+>       "lines": 10,
+>       "statements": 10,
+>       "exclude": [
+>       "**/*window-location.js",
+>       "**/*coverage"
+>       ]
+>   },
 
 The script for running the test involves the reporters, html and text, for outputting the results, while checking the coverage is done through nyc by setting it to true, which yields the analysis’ result in the terminal.
 
-    "test": "nyc --reporter=html --reporter=text --check-coverage=true mocha",
+>   "test": "nyc --reporter=html --reporter=text --check-coverage=true mocha",
 
 Diving deeper into the test files, business.spec.js handles the business logic with the chaiHttp library added to harness the true potential of integration testing and make requests to the application routes. The tests target the GET method involving both /dashboard and /profile routes with and without authentication. This is executed by setting the local storage session ID with a user ID corresponding to an entry in the database. The POST method in authentication verifies sign-up, while the 404 error is ensured to be thrown with passing the /incorrect route and checking the result status.
 
@@ -136,14 +142,14 @@ ESLint is one of several lint tools available for JavaScript. ESLint is a relati
 
 As a rule, ESlint ensures that global variables are read-only, meaning that you should not change that variable. This rule is called no-global-assign. We do, however, change the localStorage to save the user ID, which, of course, throws errors. To fix this, we changed the .eslintrc.json file to state that the global variable localStorage should also be a writable: 
 
-    "globals": {
-        "localStorage": "writable"
-    },
+>   "globals": {
+>       "localStorage": "writable"
+>   },
  
 Another issue we came across was the four presumably unused functions in our JavaScript code. Even though the functions were being called in the files with the .html and .ejs extension, the linter was skipping those files and threw errors. This is because the linter was built to check only .js extensions. We tried several of the linter plugins, but these were only for recognizing HTML or Ejs syntaxes in other file types. To avoid omitting the whole folder public and not linting the JavaScript code in here, we added a line before each of the functions, telling the linter to disable the check for no-unused-vars on the next line: 
 
-    // eslint-disable-next-line no-unused-vars
-    function animateLogin() {
+>   // eslint-disable-next-line no-unused-vars
+>   function animateLogin() {
 
 
 ### <a name="softQAcicd"> CI/CD
@@ -159,9 +165,10 @@ When it comes to implementation, many paths initially seemed plausible. However,
     - database connection in a closed state when running the tests.
 - Services in .gitlab-ci.yml file.
 
-    "test": "nyc --reporter=text-summary --check-coverage=true mocha --exit > coverage.txt",
-    "coverage": "nyc --reporter=text-summary mocha ./test/sanitization.spec.js --exit",
-    "lint": "eslint .",
+
+>   "test": "nyc --reporter=text-summary --check-coverage=true mocha --exit > coverage.txt",
+>   "coverage": "nyc --reporter=text-summary mocha ./test/sanitization.spec.js --exit",
+>   "lint": "eslint .",
 
 Following these, we have restricted ourselves to running database-independent tests through npm run coverage. Locally, npm test outputs the tests with their failing or succeeding status, as well as code coverage measuring for statements, branches, functions, and lines in coverage.txt. The registry Dockerfile now simply contains the application with Node installed in an Alpine-based environment.
 
@@ -171,17 +178,17 @@ The .gitlab-ci.yml file uses the registry image and caches the node_modules/ so 
 ### <a name="softQApages"> GitLab Pages
 When using GitLab, developers can generate static websites using GitLab pages. There are multiple Static Site Generators (SSG) such as Jekyll, Hugo, and Hexo. Because our project is built with NodeJS, however, there are a few difficulties in generating a static website out of our project. Therefore, we decided to use the static GitLab pages as an introduction to our project report. In terms of SSG, we use Jekyll.
 
-    pages:
-        image: registry.gitlab.com/kea-teachers/kea-development-environments-2021-1
-        stage: deploy
-        script:
-            - cd ./pages
-            - bundle exec Jekyll build -d ../public/
-        artifacts:
-            paths:
-                - public
-        only:
-            - master
+>   pages:
+>       image: registry.gitlab.com/kea-teachers/kea-development-environments-2021-1
+>       stage: deploy
+>       script:
+>           - cd ./pages
+>           - bundle exec Jekyll build -d ../public/
+>       artifacts:
+>           paths:
+>               - public
+>       only:
+>           - master
 
 To utilize the GitLab Pages, we included a stage named deploy in our .gitlab-ci.yml file. The YML file describes how a Runner should construct the static website. With the instructor’s permission, we are using the registry image built from the instructor’s course material repository. We are running two scripts in this stage: cd ./pages and bundle exec Jekyll build -d ../public/. When the pipeline is running, the Runner will move into a directory named .pages and execute the static site generator called Jekyll. With the build directive, we are using the -d flag to specify the build environment (directory). In the above example, we are building the static website at a directory called public on the parent level of the pages directory. Then, we provide a path to the public directory as a path to the artifacts of the website which will be uploaded to GitLab. Lastly, the only directive specifies that the job will be running only when the code is pushed into the master branch. This is to ensure that only when the development is completed and the modified code is deployed and pushed to the master branch, the website will also be updated accordingly. 
 
@@ -195,20 +202,20 @@ User documentation is a manual primarily written for end-users and system admini
  
 For the developer documentation, we are using a markup language called JSDoc to generate it, being the go-to for a JavaScript-based project. [25] As the below example shows, the information involving scope, arguments, and description is placed inside the comment that starts with /** and ends with */. The details within those comments will be detected by the JSDoc parser, which will, in return, generate the documentation automatically. The tags, such as @constructor and @param describes more specific information for components such as functions and classes. Once the project is updated with comments, we run the jsdoc {file_name} command to auto-generate HTML documentation files. [26] 
 
-    /** User class* @class This is a User class representing a user of the website.
-    */
-        module.exports = class User {
-    
-    /**
-     *Create a user.
-     *@param {string} id - The id of the user randomly generated by UUID npm library.
-     *@param {string} email - The email of the user.
-     *@param {string} password - The password of the user account.
-     *@param {string} profession - The profession of the user.
-     *@param {number} experience - The number of years of user's job experience.
-     *@param {string} interests - The subjects of user's interests.
-     *@param {string} events - The event(s) the user saved on their account.
-    */
+>   /** User class* @class This is a User class representing a user of the website.
+>   */
+>   module.exports = class User {
+>   
+>   /**
+>    *Create a user.
+>    *@param {string} id - The id of the user randomly generated by UUID npm library.
+>    *@param {string} email - The email of the user.
+>    *@param {string} password - The password of the user account.
+>    *@param {string} profession - The profession of the user.
+>    *@param {number} experience - The number of years of user's job experience.
+>    *@param {string} interests - The subjects of user's interests.
+>    *@param {string} events - The event(s) the user saved on their account.
+>   */
 
 The auto-generated outputs of the JSDoc can be found inside the out directory of the project.
 
@@ -257,40 +264,75 @@ In terms of macOS, two members had to install Docker GUI to utilize the Docker s
 
 ## <a name="biblio"> Operating System Components
 [1] 	R. Bauer, "What’s the Diff: VMs vs Containers," BACKBLAZE, 28 June 2018. [Online]. Available: https://www.backblaze.com/blog/vm-vs-containers/. [Accessed 20 May 2021].
+
 [2] 	D. Firesmith, "Virtualization via Containers," Carnegie Mellon University, 25 September 2017. [Online]. Available: https://insights.sei.cmu.edu/blog/virtualization-via-containers/. [Accessed May 2021].
+
 [3] 	Ashwin, "NGINX with Docker and Node.js — a Beginner’s guide," Medium, 29 October 2020. [Online]. Available: https://ashwin9798.medium.com/nginx-with-docker-and-node-js-a-beginners-guide-434fe1216b6b. [Accessed May 2021].
+
 [4] 	J. Ellingwood, "Understanding the Nginx Configuration File Structure and Configuration Contexts," Community, 19 November 2014. [Online]. Available: https://www.digitalocean.com/community/tutorials/understanding-the-nginx-configuration-file-structure-and-configuration-contexts. [Accessed May 2021].
+
 [5] 	Docker, "Overview of Docker Compose," Docker, [Online]. Available: https://docs.docker.com/compose/. [Accessed May 2021].
+
 [6] 	Docker, "Compose file version 3 reference," Docker, [Online]. Available: https://docs.docker.com/compose/compose-file/compose-file-v3/. [Accessed May 2021].
+
 [7] 	Docker, "Use bridge networks," Docker , [Online]. Available: https://docs.docker.com/network/bridge/. [Accessed May 2021].
+
 [8] 	Wikipedia, "Coding Conventions," Wikipedia, [Online]. Available: https://en.wikipedia.org/wiki/Coding_conventions. [Accessed May 2021].
+
 [9] 	Multidots, "Importance of Code Quality and Coding Standard in Software Development," Multidots, 21 January 2020. [Online]. Available: https://www.multidots.com/importance-of-code-quality-and-coding-standard-in-software-development/. [Accessed May 2021].
+
 [10] 	K. Beladiya, "Importance of Code Quality and Coding Standard in Software Development," The One, 21 January 2020. [Online]. Available: https://theonetechnologies.com/blog/post/importance-of-code-quality-and-coding-standard-in-software-development. [Accessed May 2021].
+
 [11] 	D. Anderson, "19 simple JavaScript coding standards to keep your code clean," JavaScript, 08 June 2020. [Online]. Available: https://javascript.plainenglish.io/19-simple-javascript-coding-standards-to-keep-your-code-clean-7422d6f9bc0. [Accessed May 2021].
+
 [12] 	Wikipedia, "Model–view–controller," Wikipedia, [Online]. Available: https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller. [Accessed May 2021].
+
 [13] 	LogRocket, "Unit and integration testing for Node.js apps," LogRocket, 12 November 2019. [Online]. Available: https://blog.logrocket.com/unit-and-integration-testing-for-node-js-apps/. [Accessed May 2021].
+
 [14] 	Code Academy, "Introduction to Testing with Mocha and Chai," Code Academy, [Online]. Available: https://www.codecademy.com/articles/bapi-testing-intro. [Accessed May 2021].
+
 [15] 	Wikepedia, "Test assertion," Wikepedia, [Online]. Available: https://en.wikipedia.org/wiki/Test_assertion. [Accessed May 2021].
+
 [16] 	Y. Goldberg, "javascript-testing-best-practices," MIT, May 2021. [Online]. Available: https://github.com/goldbergyoni/javascript-testing-best-practices/. [Accessed May 2021].
+
 [17] 	S. Cornett, "Minimum Acceptable Code Coverage," Bullseye Testing Technology, [Online]. Available: https://www.bullseye.com/minimum.html. [Accessed May 2021].
+
 [18] 	Section, "Linting in Node.js using ESLint," Section, 24 August 2020. [Online]. Available: https://www.section.io/engineering-education/node-eslint/. [Accessed May 2021].
+
 [19] 	J. Hartikainen, "A Comparison of JavaScript Linting Tools," sitepoint, 05 March 2015. [Online]. Available: https://www.sitepoint.com/comparison-javascript-linting-tools/. [Accessed May 2021].
+
 [20] 	I. Sacolick, "What is CI/CD? Continuous integration and continuous delivery explained," InfoWorld, 17 January 2020. [Online]. Available: https://www.infoworld.com/article/3271126/what-is-cicd-continuous-integration-and-continuous-delivery-explained.html. [Accessed May 2021].
+
 [21] 	Jekyll, "Step by Step Tutorial 10. Deployment," Jekyll, [Online]. Available: https://jekyllrb.com/docs/step-by-step/10-deployment/. [Accessed May 2021].
+
 [22] 	Wikipedia, "Software Documentation," Wikipedia, [Online]. Available: https://en.wikipedia.org/wiki/Software_documentation. [Accessed May 2021].
+
 [23] 	A. Trica, "The Importance of Documentation in Software Development," filtered, 18 September 2010. [Online]. Available: https://filtered.com/blog/post/project-management/the-importance-of-documentation-in-software-development. [Accessed May 2021].
+
 [24] 	altexsoft, "Technical Documentation in Software Development: Types, Best Practices, and Tools," altexsoft, 01 December 2020. [Online]. Available: https://www.altexsoft.com/blog/business/technical-documentation-in-software-development-types-best-practices-and-tools/. [Accessed May 2021].
+
 [25] 	Go Make Things, "What's the best way to document JavaScript?," Go Make Things, 20 August 2018. [Online]. Available: https://gomakethings.com/whats-the-best-way-to-document-javascript/. [Accessed May 2021].
+
 [26] 	JSDoc, "Getting Started with JSDoc 3," JSDoc, [Online]. Available: https://jsdoc.app/about-getting-started.html. [Accessed May 2021].
+
 [27] 	ATLASSIAN, "What is version control?," ATLASSIAN, [Online]. Available: https://www.atlassian.com/git/tutorials/what-is-version-control#benefits-of-version-control. [Accessed May 2021].
+
 [28] 	ATLASSIAN, "Git Feature Branch Workflow," https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow, [Online]. Available: https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow. [Accessed May 2021].
+
 [29] 	IBM, "ACID properties of transactions," IBM, 02 May 2021. [Online]. Available: https://www.ibm.com/docs/en/cics-ts/5.4?topic=processing-acid-properties-transactions. [Accessed May 2021].
+
 [30] 	Software Testing Help, "SQL Vs NoSQL Exact Differences And Know When To Use NoSQL And SQL," Software Testing Help, 27 March 2021. [Online]. Available: https://www.softwaretestinghelp.com/sql-vs-nosql/. [Accessed May 2021].
+
 [31] 	Wikipedia, "Operating system," Wikipedia, [Online]. Available: https://en.wikipedia.org/wiki/Operating_system. [Accessed May 2021].
+
 [32] 	Wikipedia, "Unix," Wikipedia, [Online]. Available: https://en.wikipedia.org/wiki/Unix. [Accessed May 2021].
+
 [33] 	Wikipedia, "Unix-like," Wikipedia, [Online]. Available: https://en.wikipedia.org/wiki/Unix-like. [Accessed May 2021].
+
 [34] 	Docker, "Docker Desktop WSL 2 backend," Docker, [Online]. Available: https://docs.docker.com/docker-for-windows/wsl/. [Accessed May 2021].
+
 [35] 	Microsoft, "Windows Subsystem for Linux Installation Guide for Windows 10," Microsoft, 07 April 2021. [Online]. Available: https://docs.microsoft.com/en-us/windows/wsl/install-win10. [Accessed May 2021].
+
 [36] 	M. Hernandez, "WSL 2 with Visual Studio Code," Visual Studio Code, 03 September 2019. [Online]. Available: https://code.visualstudio.com/blogs/2019/09/03/wsl2. [Accessed May 2021].
 
 
