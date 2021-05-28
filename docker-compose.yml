@@ -58,7 +58,7 @@ services:
         - mariadb
     networks:
         - webnet
-
+    
 volumes:
   mariadb_data:
 

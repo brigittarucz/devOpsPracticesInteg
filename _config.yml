@@ -1,0 +1,7 @@
+baseurl: "/examApp"
+url: "https://brigittarucz.gitlab.io/"
+# collections:
+#     'lectures':
+#         output: true
+#     'projects':
+#         output: true
