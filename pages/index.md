@@ -42,17 +42,17 @@ Final Project
 ## <a name="introduction"> Introduction
 We live in a world where online communication has never been more important - especially after the pandemic hit the world last year. The coding world has been using various platforms to communicate and organize teamwork online for years. Previously, most people could still talk to their co-workers face to face about possible issues. Unfortunately, that was not our case, and developing this project has shown us how important it is to know how to communicate virtually. And all the tools we have used helped us develop a product that is runnable and maintainable for different people in different environments.
 
-During this semester, we have covered ways to test, document, and deploy our code easier, altogether with properly sharing it among us through version control system while ensuring it lives up to the industry standards. For the final exam we chose the project developed by one of the team members and started improving the code quality, reduced error frequency, and, along the way, its maintainability. This report will explain all our choices and decisions by giving a clear overview of why we proceeded in a certain way and how it improved the application.
+During this semester, we have covered ways to test, document, and deploy our code easier, altogether with properly sharing it among us through a version control system while ensuring it lives up to the industry standards. For the final exam we chose the project developed by one of the team members and started improving the code quality, reduced error frequency, and, along the way, its maintainability. This report will explain all our choices and decisions by giving a clear overview of why we proceeded in a certain way and how it improved the application.
 
 
 ## <a name="requirement"> Requirement Specifications
 The requirement specification is a document where one can write down all the requirements for the project from several perspectives. The benefit of it is that it offers an overview of the structure of the project.
 
-For larger projects, there are specific standards to follow when thinking about requirement specifications. However, in our project where the basic CRUD application is decided, we did not exercise them to that extent. Instead, we used the tool to our benefit.  In our case, we have created a spreadsheet  where we wrote down different sets of requirements based on three different sides: the business, users, and system.
+For larger projects, there are specific standards to follow when thinking about requirement specifications. However, in our project which is merely a simplistic application implementing basic CRUD operations, we did not exercise them to that extent. We have still used the tool to our benefit. In our case, we have created a spreadsheet  where we wrote down different sets of requirements based on three different sides: the business, users, and system.
 
 All the requirements have an ID that we can refer to throughout the spreadsheet to record which requirements need what functionalities. We also have a column that states whether it is a functional or non-functional requirement. When creating a website, all functionalities are usually not included in the first release. Therefore, we have a column for MoSCoW to state if the requirement is a must, should, could, or will not. Lastly, a version number is given for each requirement based on the MoSCoW.
 
-To ensure that we covered everything, we looked at the project from a business perspective first. This is because the business clients are usually the ones who would give us, the developers, their wishes and needs for a project. Almost all business requirements are referenced in user requirements, system requirements, or both to meet the requirements of the business. One example is the business requirement ID #2. It states that the company wants the website to recommend events to the users based on their interests.  From a user perspective, they would not want recommendations that are unrelated to them. Therefore, we added the user requirement ID #9 to specify that users would prefer personalized, relatable recommendations.
+To ensure that we covered everything, we looked at the project from a business perspective first. This is because the business clients are usually the ones who decide the fate of the deliverable and only afterwards give to us, the developers, their wishes and needs for a project. Almost all business requirements are referenced in user requirements, system requirements, or both to meet the requirements of the business. One example is the business requirement ID #2. It states that the company wants the website to recommend events to the users based on their interests.  From a user perspective, they would not want recommendations that are unrelated to them. Therefore, we added the user requirement ID #9 to specify that users would prefer personalized, relatable recommendations.
 
 Lastly, we have a comment column where we write down small notes or further explanations of how the requirement could be fulfilled. Using the example above, we wrote that the personalized suggestions should be based on the interests set on the user's profile.
 
@@ -66,22 +66,22 @@ We have practiced containerization through a NodeJS based application connected 
 
 In the terminal, the command docker build -t node-app . builds the image tagging it (-t) after which docker run -d -p 3000:3000 node-app creates the container with the specified image running it as a process (-d) binding the port 3000 of the container to the port 3000 of the host machine (-p). In this way, testing to see if the Dockerfile successfully fulfills its scope is executed.
 
-Further, we proceed with pulling and running MariaDB and testing the connectivity between the application layer and the database layer in containers. This requires modifying the database configurations in the NodeJS files accordingly. Once successful, NGINX is added to the mix which will act as a web server, a reverse proxy, and a load balancer, all at once. [3] To dig a bit deeper into the terms, the web server will retrieve the HTTP requests forwarding them to the application by acting as a reverse proxy, routing these further by never revealing the original IP address to the client, enhancing security. Simultaneously, the property of load balancing protects the servers from crashing due to increased traffic.
+Further, we proceed with pulling and running MariaDB and testing the connectivity between the application layer and the database layer in containers. This requires modifying the database configurations in the NodeJS files accordingly. Once successful, NGINX is added to the mix which will act as a web server, a reverse proxy, and a load balancer, all at once. To dig a bit deeper into the terms, the web server will retrieve the HTTP requests forwarding them to the application by acting as a reverse proxy, routing these further by never revealing the original IP address to the client, enhancing security. Simultaneously, the property of load balancing protects the servers from crashing due to increased traffic. [3]
 
 In terms of implementation, it is done via making use of another Dockerfile again. In the Dockerfile, the base image is set following the COPY instruction to provide the necessary initial configurations. The utilized core context of the default.conf file is the server that defines a virtual server in itself that handles requests. The requests contain two directives: listen to set the IP address the server should respond to and server_name. [4] The location is another context worth mentioning that further divides the request handling, this time by URL routes, in our case simply /. One level deeper into the block of code, the proxy_pass directive ensures passing the request to a proxied server, while the upstream context defines a pool of servers that can be used.
 
-Naturally, once each command has proven to run the containers linked to each other successfully and independently, we can tackle Docker Compose, a tool for “running multi-container” applications. [5] One of the most notable benefits of this technology is that other developers can easily contribute to the project, by simply running a command rather than manually configuring the whole environment needed. To set this up, the docker-compose.yml placed at the root of the project must be written. This file cumulates our efforts, defining the version number which sets the format in which the code ought to be written firstly. [6]
+Naturally, once each command has proven to run the containers linked to each other successfully and independently, we can tackle Docker Compose, a tool for “running multi-container” applications. [5] One of the most notable benefits of this technology is that other developers can easily contribute to the project, by simply running a command rather than manually configuring the whole environment needed. To set this up, the docker-compose.yml placed at the root of the project must be written. This file cumulates our efforts, defining the version number which sets the format in which the code ought to be written first. [6]
 
 MariaDB, as a service, utilizes container_name for the database configuration in the application to match the host. Its image is pulled from the Docker Hub. We preserve data through persistent volumes managed by Docker. Moreover, the env_file sets the environment variables from a file because in this way the file could potentially be excluded from the preferred version control, protecting sensitive information. The mysqld --init-file="/tmp/database/install_db.sql" command creates the database and the tables, provided that they do not exist, populating them on the same reasoning.
 
 The NodeJS application, as a service, builds itself from the Dockerfile previously tested. The deploy directive specifies its deployment as a running service with three replicas, handled by the load balancer, as well as a restart_policy for when the containers exit with three attempts to revive on failure. The depends_on expresses the dependency between the application and the database and sets the dependency order, the services starting one by one, being guided by it.
 
-The Nginx, as a service, similarly builds itself from the Dockerfile, sets its dependencies, and exposes port 80 for outside requests. The division of the services in networks is done through a bridge driver, providing out-of-the-box DNS resolution, meaning if they do not belong to the same default network, they cannot access each other’s IP addresses. [7] This, in return, contributes to security.
+Nginx, as a service, similarly builds itself from the Dockerfile, sets its dependencies, and exposes port 80 for outside requests. The division of the services in networks is done through a bridge driver, providing out-of-the-box DNS resolution, meaning if they do not belong to the same default network, they cannot access each other’s IP addresses. [7] This, in return, contributes to security.
 
 
 ## <a name="softQA"> Software Quality Assurance
 ### <a name="softQAcode"> Coding Standard
-A coding standard is a collection of guidelines for programming style, techniques, and procedures for each part of the program developed in a specific programming language agreed upon amongst the developers. The standard commonly includes indentation, naming convention, comments, file organization, and architectural best practices. [8]
+The coding standard is a collection of guidelines, agreed between developers, related to the programming style, techniques and procedures used throughout the development of the software, focused on a specific programming language. [8]
 
 In a collaborative project, developers must establish a coding standard and conform to improve code readability, consistency, reusability, and maintenance. By ensuring that the source code is readable and understandable, other team members can easily get involved and contribute. Moreover, the software is subject to security vulnerabilities if it is inconsistent, has bugs, or has logical problems. [9] These issues are usually caused by defective programming codes that may arise as a result of poor coding practices. Faulty codes also negatively affect the site’s performance, in fields such as server response, code reusability, and user interaction. Lastly, following the coding standard is cost-effective. Clean and neat code helps developers to find bugs and errors comparatively easily. [10] During the initial stage of our project, for example, members used different code formatters and Visual Studio Code would highlight all the format changes as code changes. This made it extremely difficult to differentiate important code changes from format updates.
 
@@ -106,25 +106,14 @@ For the NodeJS project, we have implemented both unit and integration testing th
 
 The best practice is to describe the test at least two levels deep: what is being tested, in which scenario, and the expectations regarding the result. [16] Also, Docker was used for integration testing to avoid polluting the production database. When the scope of the test was oriented towards code dependent on data but not directly engaging with the database, substitute objects of data were provided directly in the code files to speed up the process and protect the test’s integrity.
 
-When it comes to the relevancy of the tests, we have to ask ourselves about the most important chunks of code that keep our application alive while having in mind the requirements specification. Related to business logic, authentication is one of the crucial elements making up the application. Both page flow and routing can be tested under the umbrella involving the information exchange between the database layer and the presentation layer. Regarding this exchange, data flows through methods in the models for the user and the event so these, alongside targeted queries could serve as a starting point for the integration testing. Lastly, what the user sees is sanitized data so the utility methods should also have their fair share of attention in the testing workflow.
+When it comes to the relevancy of the tests, we have to ask ourselves about the most important chunks of code that keep our application alive while having in mind the requirements specification. Related to business logic, authentication is one of the crucial elements making up the application. Both page flow and routing can be tested under the umbrella involving the information exchange between the database layer and the presentation layer. Regarding this exchange, data flows through methods in the models for the user and the event so these, combined with targeted queries, could serve as a starting point for the integration testing. Lastly, what the user sees is sanitized data so the utility methods should also have their fair share of attention in the testing workflow.
 
 
 ### <a name="softQAtesting"> Testing and Converage Measurements
-To prepare the playground for testing, we have installed Mocha and Chai as development dependencies alongside with ESLint, a technology that helps by identifying stylistic errors and hence, improving code quality. In conjunction with these, InstanbulJS serves as a test code coverage measuring tool.
+To prepare the playground for testing, we have installed Mocha and Chai as development dependencies alongside with ESLint, a technology that helps by identifying stylistic errors and hence, improving code quality. In conjunction with the ESLint tool, InstanbulJS serves as a coverage measuring tool for code testing. 
 
 The execution involved considering the folder structure to ensure a clear separation of concerns, hence the test and integration folders hold our files for testing and a secondary MariaDB deployment through Docker. The package.json sets the configurations for InstanbulJS with code coverage for branches. Lines and statements are set to 10, the value which is currently not aligned with the best practice that employs as a reasonable goal 70-80% coverage as a minimum acceptance criterion. [17]
 
-<!-- >   "nyc": {
->   &nbsp;
->       "all": true,
->       "branches": 10,
->       "lines": 10,
->       "statements": 10,
->       "exclude": [
->       "**/*window-location.js",
->       "**/*coverage"
->       ]
->   }, -->
 ```json
 "nyc": {
     "all": true,
@@ -138,10 +127,8 @@ The execution involved considering the folder structure to ensure a clear separa
 },
 ```
 
-
 The script for running the test involves the reporters, html and text, for outputting the results, while checking the coverage is done through nyc by setting it to true, which yields the analysis’ result in the terminal.
 
-<!-- >   "test": "nyc --reporter=html --reporter=text --check-coverage=true mocha", -->
 ```json
 "test": "nyc --reporter=html --reporter=text --check-coverage=true mocha",
 ```
@@ -156,7 +143,7 @@ Lastly, sanitization.spec.js tests the utility methods through already defined d
 ### <a name="softQAlinting"> Linting
 Linting is the process of testing your source code for syntactic and stylistic problems using an automated system. A lint tool, also called a linter, performs static code analysis, meaning it analyzes the source code without running the application. A linter can help enforce coding standards. It also helps reduce cost because a linter may detect bugs and errors before deployment. [18]
 
-ESLint is one of several lint tools available for JavaScript. ESLint is a relatively new and widely used tool for linting JavaScript code. It is built to be readily expandable and includes many plugins. It is also known for having the finest ES6 support and for being the only linter that works with JSX. [19] We opted to utilize ESLint as our linting tool for the project based on our research. We use the env: {"node": true} option in the .eslintrc.json file to allow the linter to recognize that the project is built using the node environment. Moreover, because Mocha and Chai syntaxes are unrecognized by the linter and flags errors, we generated a file named .eslintignore to exclude the test directory.
+ESLint is one of several lint tools available for JavaScript. ESLint is a relatively new and widely used tool for linting JavaScript code. It is built to be readily expandable and includes many plugins. It is also known for having the finest ES6 support and for being the only linter that works with JSX. [19] We opted to utilize ESLint as our linting tool for the project based on our research. We use the env: {"node": true} option in the .eslintrc.json file to allow the linter to recognize that the project is built using the Node environment. Moreover, because Mocha and Chai syntaxes are unrecognized by the linter and flags errors, we generated a file named .eslintignore to exclude the test directory.
 
 As a rule, ESlint ensures that global variables are read-only, meaning that you should not change that variable. This rule is called no-global-assign. We do, however, change the localStorage to save the user ID, which, of course, throws errors. To fix this, we changed the .eslintrc.json file to state that the global variable localStorage should also be a writable: 
 
@@ -165,7 +152,7 @@ As a rule, ESlint ensures that global variables are read-only, meaning that you 
     "localStorage": "writable"
 },
 ```
- 
+
 Another issue we came across was the four presumably unused functions in our JavaScript code. Even though the functions were being called in the files with the .html and .ejs extension, the linter was skipping those files and threw errors. This is because the linter was built to check only .js extensions. We tried several of the linter plugins, but these were only for recognizing HTML or Ejs syntaxes in other file types. To avoid omitting the whole folder public and not linting the JavaScript code in here, we added a line before each of the functions, telling the linter to disable the check for no-unused-vars on the next line: 
 
 ```javascript
@@ -250,7 +237,7 @@ The auto-generated outputs of the JSDoc can be found inside the out directory of
 
 
 ## <a name="version"> Version Control System
-Version control is the process of monitoring and handling modifications to software code. A version control system is a tool that aids software development teams in managing and tracking source code updates. For high-performing applications and DevOps departments, using version management software is a best practice. Version management also lets developers work more quickly and encourages development projects maintaining productivity and agility as the team grows. [27] 
+Version control is the process of monitoring and handling modifications to software code. A version control system is a tool that aids software development teams in managing and tracking source code updates. For high-performing applications and DevOps departments, using version management software is a best practice. Version management also lets developers work more quickly and encourages development projects to maintain productivity and agility as the team grows. [27] 
  
 In our project, we implement the Git Feature Branch Workflow. Theoretically, any developing features should be done on a dedicated branch instead of working directly on the master branch. This is to encapsulate and protect the code base and to ensure the main branch will not contain broken code. Moreover, it also forces developers to create a pull request each time they complete a feature and would like to merge it to the code base where other developers on the team can check, approve, and discuss the feature. [28] However, because the web application code was completed before the project started, we have not created a separate feature branch for developing the web application.
  
@@ -266,17 +253,16 @@ Choosing a database is one of the most crucial parts when developing a website. 
 
 Looking at our requirement specifications from a business point of view, we want to be able to have a high number of users who can add and save events to their personal schedule. With this requirement, it is important to have a database that can handle a large number of interactions simultaneously. Another requirement for this website is that users should be able to browse events, comment, and manage their schedules. This implies that a lot of data will be intertwined throughout the website. Since we will be having a lot of relational data it makes sense to pick a Relational Database Management System, RDBMS.
  
-There are plenty of advantages when picking this type of database for our case. A relational database follows the ACID model, which creates a reliable system. ACID stands for Atomic, Consistent, Isolated, and Durable. [29] When each of those properties comes together, all transactions and actions on the website will happen only when all parts of the actions are complete. Nothing will be sent to the database unless all required fields are filled out, and the connection to the database is a success. If a crash happens to the server and the connection to the database is cut off, it will roll back and not save anything.
+There are plenty of advantages when picking this type of database for our case. A relational database follows the ACID model, which creates a reliable system. ACID stands for Atomic, Consistent, Isolated, and Durable. [29] When each of those properties come together, all transactions and actions on the website will happen only when all parts of the actions are complete. Nothing will be sent to the database unless all required fields are filled out, and the connection to the database is a success. If a crash happens to the server and the connection to the database is cut off, it will roll back and not save anything.
 
 Another important aspect belonging to the ACID principles is that everything happens in isolation. Multiple users can perform updates to their profile since each user is assigned a row in the database and will only manipulate that assigned row. So, if another user starts updating their profile, they will only be manipulating their row and no one else’s. At the same time, no user has to wait until another user is done to be able to edit their profile.
 
 Even though our database choice seemed “cut and dry”, there are still downsides to using a relational database. For larger companies that store an endless amount of data, it might be an expensive choice of the database since it scales vertically, meaning it needs much more RAM and CPU power to be able to store all the data. Another downside can be the rigid schema. All tables should be normalized so they do not have any empty cells nor repeated data. Whenever you delete data, it should cascade throughout the website as well. This is where NoSQL databases come in. NoSQL means “not only SQL”. It is a wide term covering database paradigms such as key/value, document, or graph-based databases. NoSQL databases have a much more relaxed schema for those who want to be more flexible with their data. Another advantage for NoSQL databases is that they scale horizontally, which means you can have the database running on many servers. This is much cheaper compared to vertical scaling.
  
 Where the RDBMS is ACID compliant, NoSQL databases are BASE compliant. The BASE stands for Basic Availability, Soft-state, and Eventual Consistency. These all contribute to the relaxed schema where the database isn’t necessarily consistent, but it is always available through at least one server.
- 
 Many larger companies can benefit from using multiple database systems for individual tasks, but a sage choice is always to use a relational database since it provides the biggest safety net. [30] Because of the transactions in a relational database, you will never have any data stored that does not belong and if something goes wrong, you’ll be sure it doesn’t go to the database.
  
-By taking the benefit of speed and horizontal scaling of NoSQL into consideration, one can conclude it doesn’t overshadow the advantages of the reliable schema and the ACID properties of a relational database. Since we know how we want to store our data and how they are related, a relational database is the best choice for the project.
+By taking the benefit of speed and horizontal scaling of NoSQL into consideration, one can conclude it doesn’t overshadow the advantages of the reliable schema and the ACID properties of a relational database. Since we know how we want to store our data and how they are inter-connected to each other, a relational database is the best choice for the project.
 
 
 ## <a name="os"> Operating System Components
