@@ -277,7 +277,7 @@ The member who currently uses a Windows machine for the project has integrated t
 In terms of macOS, two members had to install Docker GUI to utilize the Docker systems. In order to start and run the Docker containers, the members had to initiate the Docker application and manage the containers either through the graphical interface of the application or the command line interface on the Visual Studio Code application. Besides the Docker application installation, the macOS did not require any further operating system components to develop and implement the project.
 
 
-## <a name="biblio"> Operating System Components
+## <a name="biblio"> Bibliography
 [1] 	R. Bauer, "What’s the Diff: VMs vs Containers," BACKBLAZE, 28 June 2018. [Online]. Available: https://www.backblaze.com/blog/vm-vs-containers/. [Accessed 20 May 2021].
 
 [2] 	D. Firesmith, "Virtualization via Containers," Carnegie Mellon University, 25 September 2017. [Online]. Available: https://insights.sei.cmu.edu/blog/virtualization-via-containers/. [Accessed May 2021].
