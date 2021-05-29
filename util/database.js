@@ -10,8 +10,8 @@ const mysql = require('mysql2');
 
 /** Create connection to the database. */
 const pool = mysql.createConnection({
-    // host: 'mariadb',    // Docker
-    host: 'localhost',  // Testing
+    host: 'mariadb',    // Docker
+    // host: 'localhost',  // Testing
     user: 'root',
     database: 'techevents_users',
     password: 'password',
