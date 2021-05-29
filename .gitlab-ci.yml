@@ -37,14 +37,45 @@ testing:
     - npm run lint
     - npm run coverage
 
+# pages:
+#   stage: deploy
+#   script:
+#     - mkdir .public
+#     - cp -r * .public
+#     - mv .public public
+#   artifacts:
+#     paths:
+#       - public
+#   only:
+#     - master
+
+# variables:
+#   JEKYLL_ENV: production
+
+# pages:
+#   stage: deploy
+#   # image: ruby:latest
+#   script:
+#     # - gem install rake && bundle install
+#     # - gem install jekyll
+#     # - jekyll build -d public/
+#     - bundle exec jekyll build -d public
+#   artifacts:
+#     paths:
+#       - public
+#   only:
+#     - app_pages
+
+# the 'pages' job will deploy and build your site to the 'public' path
 pages:
+  image: registry.gitlab.com/kea-teachers/kea-development-environments-2021-1
   stage: deploy
   script:
-    - mkdir .public
-    - cp -r * .public
-    - mv .public public
+    - cd ./pages
+    - bundle exec jekyll build -d ../public/
   artifacts:
     paths:
       - public
   only:
     - master
+
