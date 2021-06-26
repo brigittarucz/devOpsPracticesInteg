@@ -13,9 +13,6 @@ env_setup:
   stage: build
   script:
     - npm install
-  # artifacts:
-  #   paths:
-  #     - node_modules/
 
 testing:
   stage: test
