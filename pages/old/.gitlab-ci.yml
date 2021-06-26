@@ -1,0 +1,81 @@
+# default:
+image: registry.gitlab.com/brigittarucz/examapp
+  # services:
+  #   - name: mariadb:latest
+  #     alias: mariadb
+
+cache:
+  paths:
+    - node_modules/
+
+# variables:
+#   MYSQL_USER: root
+#   MYSQL_ROOT_PASSWORD: password
+#   MYSQL_DATABASE: techevents_users
+
+# connect:
+#   image: mysql
+#   script:
+#   - echo "SELECT 'OK';" | mysql --user=root --password=password --host=mariadb techevents_users
+
+stages:
+  - build
+  - test
+  - deploy
+
+env_setup:
+  stage: build
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+
+testing:
+  stage: test
+  script:
+    - npm run lint
+    - npm run coverage
+
+# pages:
+#   stage: deploy
+#   script:
+#     - mkdir .public
+#     - cp -r * .public
+#     - mv .public public
+#   artifacts:
+#     paths:
+#       - public
+#   only:
+#     - master
+
+# variables:
+#   JEKYLL_ENV: production
+
+# pages:
+#   stage: deploy
+#   # image: ruby:latest
+#   script:
+#     # - gem install rake && bundle install
+#     # - gem install jekyll
+#     # - jekyll build -d public/
+#     - bundle exec jekyll build -d public
+#   artifacts:
+#     paths:
+#       - public
+#   only:
+#     - app_pages
+
+# the 'pages' job will deploy and build your site to the 'public' path
+pages:
+  image: registry.gitlab.com/kea-teachers/kea-development-environments-2021-1
+  stage: deploy
+  script:
+    - cd ./pages
+    - bundle exec jekyll build -d ../public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+

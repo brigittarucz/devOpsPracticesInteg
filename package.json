@@ -18,7 +18,8 @@
     "coverage": "nyc --reporter=text-summary mocha ./test/sanitization.spec.js --exit",
     "lint": "eslint .",
     "start": "nodemon app.js",
-    "compile:sass": "node-sass sass/main.scss public/css/style.css -w"
+    "compile:sass": "node-sass sass/main.scss public/css/style.css -w",
+    "jsdoc": "./node_modules/jsdoc/jsdoc.js ./controllers/authenticate.js ./models/user.js ./util/database.js"
   },
   "author": "",
   "license": "ISC",
