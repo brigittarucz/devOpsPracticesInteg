@@ -3,7 +3,7 @@ const db = require('../util/database');
 
 /**
  * Module for user-related utilities.
- * @module models/user
+ * @module models/user 
  */
 
 /**
