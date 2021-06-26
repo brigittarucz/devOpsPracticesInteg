@@ -1,8 +1,8 @@
 image: registry.gitlab.com/brigittarucz/examapp
 
-# cache:
-#   paths:
-#     - node_modules/
+cache:
+  paths:
+    - node_modules/
 
 stages:
   - build
