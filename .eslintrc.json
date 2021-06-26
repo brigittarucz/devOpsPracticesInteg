@@ -13,5 +13,5 @@
   "globals": {
     "localStorage": "writable"
   },
-  "plugins": ["ejs"]
+  // "plugins": ["ejs"]
 }
